@@ -60,8 +60,8 @@ export const successStories = [
     {
         id: 102,
         title: "Cartagena, Colombia",
-        subtitle: "Morros Ío Manzanillo",
-        specs: "Apartamento 110 MT | 2 Habitaciones",
+        subtitle: "Morros ÍO Manzanillo",
+        specs: "Apartamento 110 MT | 2 Habitaciones | 2 baños",
         image: "https://images.unsplash.com/photo-1596200216447-97d8ccf99b19?auto=format&fit=crop&q=80", // Foto estilo playa/edificio
         location: "Cartagena, CO"
     },
@@ -69,8 +69,24 @@ export const successStories = [
         id: 103,
         title: "Medellín, Colombia",
         subtitle: "Nativo Madera",
-        specs: "Apartamento 135 MT | 3 Habitaciones",
+        specs: "Apartamento 135 MT | 3 Habitaciones | 4 baños",
         image: "https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?auto=format&fit=crop&q=80", // Edificio moderno
         location: "Medellín, CO"
-    }
+    },
+    {
+        id: 104,
+        title: "Medellín, Colombia",
+        subtitle: "Nativo Agua",
+        specs: "Apartamento 85 MT | 2 Habitaciones | 2 baños",
+        image: "https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?auto=format&fit=crop&q=80", // Edificio moderno
+        location: "Medellín, CO"
+    },
+    {
+        id: 105,
+        title: "Medellín, Colombia",
+        subtitle: "MONTESOLE",
+        specs: "Apartamento 85 MT | 2 Habitaciones | 2 baños",
+        image: "https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?auto=format&fit=crop&q=80", // Edificio moderno
+        location: "Medellín, CO"
+    },
 ];

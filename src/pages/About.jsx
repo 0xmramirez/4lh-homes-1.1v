@@ -8,23 +8,23 @@ const About = () => {
   const teamMembers = [
     {
       id: 1,
-      name: "Nombre del CEO",
+      name: "Rodrigo Buitrago",
       role: "CEO & Co-Founder",
-      image: "https://images.unsplash.com/photo-1560250097-0b93528c311a?q=80&w=1000&auto=format&fit=crop",
+      image: "/images/equipo/PHOTO-2024-05-24-15-06-41.webp",
       bio: "Experto en desarrollo inmobiliario con más de 15 años de experiencia liderando proyectos en Colombia y Florida."
     },
     {
       id: 2,
-      name: "Socio Principal",
+      name: "Juan David Ramírez",
       role: "Director de Operaciones",
-      image: "https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?q=80&w=1000&auto=format&fit=crop",
+      image: "/images/equipo/IMG_1744.webp",
       bio: "Especialista en gestión de obra y optimización de recursos. Garantiza la ejecución perfecta de cada vivienda."
     },
     {
       id: 3,
-      name: "Directora Comercial",
+      name: "Isabel Ochoa",
       role: "Head of Sales",
-      image: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?q=80&w=1000&auto=format&fit=crop",
+      image: "/images/equipo/IMG_9126 2.webp",
       bio: "Encargada de las relaciones con inversionistas y la estrategia de comercialización de activos."
     }
   ];
@@ -144,7 +144,7 @@ const About = () => {
                         <img 
                             src={member.image} 
                             alt={member.name} 
-                            className="w-full h-full object-cover filter grayscale group-hover:grayscale-0 transition-all duration-700 transform group-hover:scale-110"
+                            className="w-full h-full object-cover object-top filter grayscale group-hover:grayscale-0 transition-all duration-700 transform group-hover:scale-110"
                         />
                     </div>
                     

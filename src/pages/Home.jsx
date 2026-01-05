@@ -1,171 +1,262 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
 import { Link } from 'react-router-dom';
-import Hero from '../components/sections/Hero';
-import { projects } from '../data/projectsData'; // Importamos tus proyectos
-import { ArrowRight, Star, ShieldCheck, Users, TrendingUp } from 'lucide-react';
+import { ArrowRight, Star, Shield, TrendingUp, Building, Wallet, HardHat } from 'lucide-react';
+
+// IMÁGENES DEL CARRUSEL (Asegúrate de tener estas o usar las tuyas locales)
+const heroImages = [
+    "https://images.unsplash.com/photo-1600596542815-e32c2159f828?q=80&w=2000&auto=format&fit=crop",
+    "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?q=80&w=2000&auto=format&fit=crop",
+    "https://images.unsplash.com/photo-1592595896551-12b371d546d5?q=80&w=2000&auto=format&fit=crop"
+];
 
 const Home = () => {
-  // Tomamos solo los primeros 3 proyectos para mostrar en la portada
-  const featuredProjects = projects.slice(0, 3);
+    const [currentImage, setCurrentImage] = useState(0);
 
-  return (
-    <div>
-      
-      <Hero />
+    useEffect(() => {
+        const timer = setInterval(() => {
+            setCurrentImage((prevIndex) => (prevIndex + 1) % heroImages.length);
+        }, 5000);
+        return () => clearInterval(timer);
+    }, []);
 
-      {/* 2. INTRODUCCIÓN / VISIÓN */}
-      <section className="py-20 bg-white">
-        <div className="max-w-7xl mx-auto px-6">
-          <div className="grid md:grid-cols-2 gap-12 items-center">
-            <div>
-              <span className="text-lh-gold font-bold tracking-widest uppercase text-sm">Sobre 4LH Group</span>
-              <h2 className="font-heading text-4xl text-lh-blue mt-2 mb-6 font-bold">
-                Expertos en Desarrollo Inmobiliario en <span className="text-lh-gold">South Florida</span>
-              </h2>
-              <p className="text-gray-600 text-lg leading-relaxed mb-6">
-                No somos solo constructores; somos estrategas de inversión. Identificamos las zonas de mayor crecimiento en North Port y Port Charlotte para desarrollar propiedades que maximizan el retorno de nuestros socios y la calidad de vida de nuestros compradores.
-              </p>
-              
-              <div className="grid grid-cols-2 gap-6 mb-8">
-                <div className="flex items-start">
-                    <ShieldCheck className="w-8 h-8 text-lh-gold mr-3 shrink-0" />
-                    <div>
-                        <h4 className="font-bold text-lh-blue">Seguridad</h4>
-                        <p className="text-sm text-gray-500">Activos tangibles y gestión transparente.</p>
+    return (
+        <div className="font-sans text-gray-800">
+
+            {/* 1. HERO SECTION (CARRUSEL) */}
+            <section className="relative h-screen flex items-center justify-center overflow-hidden">
+                <div className="absolute inset-0 w-full h-full bg-black">
+                    <AnimatePresence mode='wait'>
+                        <motion.img
+                            key={currentImage}
+                            src={heroImages[currentImage]}
+                            alt="Hero Background"
+                            initial={{ opacity: 0, scale: 1.1 }}
+                            animate={{ opacity: 1, scale: 1 }}
+                            exit={{ opacity: 0 }}
+                            transition={{ duration: 1.5 }}
+                            className="absolute inset-0 w-full h-full object-cover opacity-60"
+                        />
+                    </AnimatePresence>
+                    <div className="absolute inset-0 bg-black/40"></div>
+                </div>
+
+                <div className="relative z-10 text-center px-6 max-w-5xl mx-auto mt-16">
+                    <motion.div
+                        initial={{ opacity: 0, y: 30 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ duration: 0.8 }}
+                    >
+                        <span className="text-lh-gold font-bold tracking-[0.3em] uppercase text-sm md:text-base mb-6 block">
+                            Bienvenidos a 4LH Group
+                        </span>
+                        <h1 className="font-heading text-5xl md:text-7xl lg:text-8xl font-bold text-white mb-8 leading-tight">
+                            Inversión Inmobiliaria <br />
+                            <span className="text-transparent bg-clip-text bg-gradient-to-r from-lh-gold to-yellow-200">
+                                Verticalmente Integrada
+                            </span>
+                        </h1>
+                        <p className="text-gray-200 text-lg md:text-2xl font-light mb-10 max-w-3xl mx-auto leading-relaxed">
+                            Desarrolladora inmobiliaria especializada en construcción residencial y gestión de capital en <span className="text-white font-bold">Florida y South Carolina</span>.
+                        </p>
+
+                        <div className="flex flex-col md:flex-row gap-4 justify-center items-center">
+                            <Link to="/proyectos" className="px-8 py-4 bg-lh-gold text-black font-bold text-lg rounded hover:bg-white transition-all w-full md:w-auto min-w-[200px]">
+                                Ver Propiedades
+                            </Link>
+                            <Link to="/inversionistas" className="px-8 py-4 bg-transparent border border-white text-white font-bold text-lg rounded hover:bg-white hover:text-black transition-all w-full md:w-auto min-w-[200px] flex items-center justify-center gap-2">
+                                Invertir Capital <ArrowRight className="w-5 h-5" />
+                            </Link>
+                        </div>
+                    </motion.div>
+                </div>
+
+                {/* Indicadores */}
+                <div className="absolute bottom-10 left-1/2 transform -translate-x-1/2 flex gap-3 z-20">
+                    {heroImages.map((_, index) => (
+                        <button
+                            key={index}
+                            onClick={() => setCurrentImage(index)}
+                            className={`w-3 h-3 rounded-full transition-all duration-300 ${index === currentImage ? 'bg-lh-gold w-8' : 'bg-white/50 hover:bg-white'
+                                }`}
+                        />
+                    ))}
+                </div>
+            </section>
+
+            {/* 2. NUEVA SECCIÓN: QUIÉNES SOMOS (Rescatando info corporativa) */}
+            <section className="py-24 bg-white px-6">
+                <div className="max-w-4xl mx-auto text-center">
+                    <h2 className="font-heading text-3xl md:text-4xl font-bold text-black mb-6">
+                        Más que constructores, somos su socio local en Florida
+                    </h2>
+                    <p className="text-gray-600 text-lg leading-relaxed mb-12">
+                        4LH Group nace para cerrar la brecha entre el inversor internacional y el mercado inmobiliario americano.
+                        Eliminamos intermediarios innecesarios al controlar <strong>toda la cadena de valor</strong>: compramos la tierra, desarrollamos el proyecto, construimos con equipos propios y comercializamos el activo final.
+                    </p>
+
+                    <div className="grid md:grid-cols-3 gap-8">
+                        <div className="p-6 bg-gray-50 rounded-xl hover:shadow-lg transition-shadow">
+                            <Building className="w-10 h-10 text-lh-gold mx-auto mb-4" />
+                            <h3 className="font-bold text-xl mb-2">Desarrollo</h3>
+                            <p className="text-sm text-gray-500">Identificación de lotes premium y gestión de permisos en tiempo récord.</p>
+                        </div>
+                        <div className="p-6 bg-gray-50 rounded-xl hover:shadow-lg transition-shadow">
+                            <HardHat className="w-10 h-10 text-lh-gold mx-auto mb-4" />
+                            <h3 className="font-bold text-xl mb-2">Construcción</h3>
+                            <p className="text-sm text-gray-500">Ejecución de obra con estándares de calidad superiores y control de costos.</p>
+                        </div>
+                        <div className="p-6 bg-gray-50 rounded-xl hover:shadow-lg transition-shadow">
+                            <Wallet className="w-10 h-10 text-lh-gold mx-auto mb-4" />
+                            <h3 className="font-bold text-xl mb-2">Capital</h3>
+                            <p className="text-sm text-gray-500">Estructuración de vehículos de inversión para maximizar el retorno del socio.</p>
+                        </div>
                     </div>
                 </div>
-                <div className="flex items-start">
-                    <TrendingUp className="w-8 h-8 text-lh-gold mr-3 shrink-0" />
+            </section>
+
+            {/* 3. POR QUÉ FLORIDA / ESTADÍSTICAS */}
+            <section className="py-20 bg-lh-dark text-white border-y border-gray-800">
+                <div className="max-w-7xl mx-auto px-6 grid md:grid-cols-3 gap-12 text-center">
                     <div>
-                        <h4 className="font-bold text-lh-blue">Plusvalía</h4>
-                        <p className="text-sm text-gray-500">Zonas de revalorización acelerada.</p>
+                        <div className="w-16 h-16 bg-gray-900 rounded-full flex items-center justify-center mx-auto mb-6 text-lh-gold border border-gray-700">
+                            <Shield className="w-8 h-8" />
+                        </div>
+                        <h3 className="text-xl font-bold mb-3 font-heading">Seguridad Jurídica</h3>
+                        <p className="text-gray-400">Proteja su patrimonio en una economía dolarizada con títulos de propiedad a su nombre.</p>
+                    </div>
+                    <div>
+                        <div className="w-16 h-16 bg-gray-900 rounded-full flex items-center justify-center mx-auto mb-6 text-lh-gold border border-gray-700">
+                            <TrendingUp className="w-8 h-8" />
+                        </div>
+                        <h3 className="text-xl font-bold mb-3 font-heading">Demanda Creciente</h3>
+                        <p className="text-gray-400">South Florida y Port Charlotte lideran el crecimiento demográfico en EE.UU., garantizando la revalorización.</p>
+                    </div>
+                    <div>
+                        <div className="w-16 h-16 bg-gray-900 rounded-full flex items-center justify-center mx-auto mb-6 text-lh-gold border border-gray-700">
+                            <Star className="w-8 h-8" />
+                        </div>
+                        <h3 className="text-xl font-bold mb-3 font-heading">Experiencia Probada</h3>
+                        <p className="text-gray-400">Un equipo multidisciplinario con trayectoria exitosa en Colombia y Estados Unidos.</p>
                     </div>
                 </div>
-              </div>
+            </section>
 
-              <Link to="/nosotros" className="text-lh-blue font-bold border-b-2 border-lh-gold pb-1 hover:text-lh-gold transition-colors inline-flex items-center">
-                Conozca a nuestro equipo <ArrowRight className="ml-2 w-4 h-4" />
-              </Link>
-            </div>
+            {/* 4. PROYECTO DESTACADO (BEST SELLER) */}
+            <section className="py-24 bg-white">
+                <div className="max-w-7xl mx-auto px-6 grid lg:grid-cols-2 gap-16 items-center">
+                    <div className="relative order-2 lg:order-1">
+                        <div className="absolute -top-4 -left-4 w-24 h-24 border-t-4 border-l-4 border-lh-gold"></div>
+                        <img
+                            src="https://images.unsplash.com/photo-1613490493576-7fde63acd811?q=80&w=2000&auto=format&fit=crop"
+                            alt="Casa Modelo"
+                            className="rounded shadow-2xl relative z-10 w-full h-[500px] object-cover"
+                        />
+                        <div className="absolute -bottom-4 -right-4 w-24 h-24 border-b-4 border-r-4 border-lh-gold"></div>
+                    </div>
 
-            <div className="relative">
-              {/* Imagen decorativa */}
-              <div className="absolute -top-4 -left-4 w-24 h-24 bg-lh-gold/20 rounded-full z-0"></div>
-              <img 
-                src="https://images.unsplash.com/photo-1541888946425-d81bb19240f5?q=80&w=1000&auto=format&fit=crop" 
-                alt="Construction Site" 
-                className="relative z-10 rounded-2xl shadow-2xl w-full h-[500px] object-cover grayscale hover:grayscale-0 transition-all duration-700"
-              />
-              <div className="absolute bottom-8 -right-6 bg-white p-6 rounded-lg shadow-xl z-20 max-w-xs border-l-4 border-lh-blue hidden md:block">
-                <div className="flex items-center mb-2">
-                    <Users className="w-5 h-5 text-lh-gold mr-2" />
-                    <span className="font-bold text-lh-blue">Atención Personalizada</span>
-                </div>
-                <p className="text-xs text-gray-500">Acompañamiento integral desde la selección del lote hasta la entrega de llaves.</p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
+                    <div className="order-1 lg:order-2">
+                        <span className="text-lh-gold font-bold tracking-widest uppercase text-sm">Modelo Destacado</span>
+                        <h2 className="font-heading text-4xl md:text-5xl font-bold mt-4 mb-6 text-black">Modelo "The Palm"</h2>
+                        <p className="text-gray-600 text-lg mb-8 leading-relaxed">
+                            Diseñado para maximizar el valor de reventa. Nuestro modelo insignia combina eficiencia constructiva con acabados de lujo, ideal tanto para familias como para inversores de renta larga.
+                        </p>
 
-      {/* 3. PROYECTOS DESTACADOS (Dinámico) */}
-      <section className="py-20 bg-gray-50">
-        <div className="max-w-7xl mx-auto px-6">
-            <div className="flex justify-between items-end mb-12">
-                <div>
-                    <h2 className="font-heading text-4xl text-lh-blue font-bold">Proyectos Recientes</h2>
-                    <p className="text-gray-500 mt-2">Oportunidades de inversión y vivienda disponibles.</p>
-                </div>
-                <Link to="/proyectos" className="hidden md:flex items-center bg-lh-blue text-white px-6 py-3 rounded hover:bg-gray-800 transition">
-                    Ver Portafolio Completo <ArrowRight className="ml-2 w-4 h-4" />
-                </Link>
-            </div>
-
-            <div className="grid md:grid-cols-3 gap-8">
-                {featuredProjects.map((project) => (
-                    <Link to={`/proyectos/${project.id}`} key={project.id} className="group">
-                        <div className="bg-white rounded-xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 h-full border border-gray-100">
-                            <div className="relative h-64 overflow-hidden">
-                                <img 
-                                    src={project.image} 
-                                    alt={project.title} 
-                                    className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
-                                />
-                                <div className="absolute top-4 right-4 bg-white/90 backdrop-blur px-3 py-1 rounded-full text-xs font-bold text-lh-blue shadow-sm">
-                                    {project.status === 'sale' ? 'En Venta' : project.status === 'construction' ? 'En Obra' : 'Vendido'}
-                                </div>
+                        <div className="grid grid-cols-2 gap-8 mb-8 border-y border-gray-100 py-6">
+                            <div>
+                                <p className="text-3xl font-bold text-black">1,800</p>
+                                <p className="text-gray-400 text-sm uppercase tracking-wider">Sq Ft Totales</p>
                             </div>
-                            <div className="p-6">
-                                <h3 className="font-heading text-lg font-bold text-lh-blue mb-1 group-hover:text-lh-gold transition-colors truncate">{project.title}</h3>
-                                <p className="text-gray-500 text-sm mb-4">{project.location}</p>
-                                <div className="flex justify-between items-center pt-4 border-t border-gray-100">
-                                    <span className="font-bold text-xl text-lh-blue">{project.price}</span>
-                                    <span className="text-xs text-gray-400 font-semibold">Ver Detalles &rarr;</span>
-                                </div>
+                            <div>
+                                <p className="text-3xl font-bold text-black">10 Meses</p>
+                                <p className="text-gray-400 text-sm uppercase tracking-wider">Tiempo Ejecución</p>
                             </div>
                         </div>
+
+                        <Link to="/proyectos/1" className="bg-black text-white px-8 py-3 rounded hover:bg-lh-gold hover:text-black transition-all inline-flex items-center gap-2 font-bold">
+                            Ver Detalles Completos <ArrowRight className="w-4 h-4" />
+                        </Link>
+                    </div>
+                </div>
+            </section>
+
+            {/* 6. SECCIÓN DE TESTIMONIOS (Rescatado de la web anterior) */}
+            <section className="py-24 bg-gray-50 px-6">
+                <div className="max-w-7xl mx-auto text-center mb-16">
+                    <h2 className="font-heading text-3xl md:text-4xl font-bold text-black mb-4">Lo que dicen nuestros socios</h2>
+                    <div className="w-20 h-1 bg-lh-gold mx-auto"></div>
+                </div>
+
+                <div className="max-w-7xl mx-auto grid md:grid-cols-3 gap-8">
+                    {/* Testimonio 1 */}
+                    <div className="bg-white p-8 rounded-xl shadow-sm border border-gray-100 italic text-gray-600 relative">
+                        <div className="text-6xl text-lh-gold opacity-30 absolute top-4 left-4 font-serif">"</div>
+                        <p className="mb-6 relative z-10">
+                            "Invertir con 4LH me dio la tranquilidad de tener mi capital respaldado en ladrillos en USA. La transparencia en los reportes de obra es impecable."
+                        </p>
+                        <div className="flex items-center justify-center gap-3 not-italic">
+                            <div className="w-10 h-10 bg-gray-200 rounded-full overflow-hidden">
+                                {/* Usa una foto real o un placeholder */}
+                                <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="Cliente" />
+                            </div>
+                            <div className="text-left">
+                                <p className="font-bold text-black text-sm">Carlos M.</p>
+                                <p className="text-xs text-gray-400">Inversionista desde 2021</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    {/* Testimonio 2 */}
+                    <div className="bg-white p-8 rounded-xl shadow-sm border border-gray-100 italic text-gray-600 relative">
+                        <div className="text-6xl text-lh-gold opacity-30 absolute top-4 left-4 font-serif">"</div>
+                        <p className="mb-6 relative z-10">
+                            "El proceso de construcción de mi casa en North Port fue mucho más rápido de lo esperado. Cumplieron con los tiempos a pesar de los retos del clima."
+                        </p>
+                        <div className="flex items-center justify-center gap-3 not-italic">
+                            <div className="w-10 h-10 bg-gray-200 rounded-full overflow-hidden">
+                                <img src="https://randomuser.me/api/portraits/women/44.jpg" alt="Cliente" />
+                            </div>
+                            <div className="text-left">
+                                <p className="font-bold text-black text-sm">Sarah Jenkins</p>
+                                <p className="text-xs text-gray-400">Propietaria Modelo Palm</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    {/* Testimonio 3 */}
+                    <div className="bg-white p-8 rounded-xl shadow-sm border border-gray-100 italic text-gray-600 relative">
+                        <div className="text-6xl text-lh-gold opacity-30 absolute top-4 left-4 font-serif">"</div>
+                        <p className="mb-6 relative z-10">
+                            "Excelente equipo humano. Me guiaron no solo en la construcción, sino en toda la estructura legal para traer mi capital desde Colombia."
+                        </p>
+                        <div className="flex items-center justify-center gap-3 not-italic">
+                            <div className="w-10 h-10 bg-gray-200 rounded-full overflow-hidden">
+                                <img src="https://randomuser.me/api/portraits/men/85.jpg" alt="Cliente" />
+                            </div>
+                            <div className="text-left">
+                                <p className="font-bold text-black text-sm">Andrés R.</p>
+                                <p className="text-xs text-gray-400">Socio de Capital</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            {/* 5. CTA FINAL */}
+            <section className="py-20 bg-lh-gold text-center px-6">
+                <h2 className="font-heading text-3xl md:text-4xl font-bold text-black mb-4">¿Listo para comenzar su proyecto?</h2>
+                <p className="text-black/80 max-w-2xl mx-auto mb-8 text-lg">
+                    Ya sea que busque construir su hogar soñado o diversificar su portafolio de inversión.
+                </p>
+                <div className="flex justify-center gap-4">
+                    <Link to="/contacto" className="bg-black text-white px-8 py-3 rounded font-bold hover:bg-white hover:text-black transition-colors shadow-lg">
+                        Contactar Asesor
                     </Link>
-                ))}
-            </div>
+                </div>
+            </section>
 
-            <div className="mt-8 text-center md:hidden">
-                <Link to="/proyectos" className="inline-flex items-center bg-lh-blue text-white px-6 py-3 rounded hover:bg-gray-800 transition">
-                    Ver Todos <ArrowRight className="ml-2 w-4 h-4" />
-                </Link>
-            </div>
         </div>
-      </section>
-
-      {/* 4. TESTIMONIOS (Social Proof) */}
-      <section className="py-20 bg-lh-blue text-white relative overflow-hidden">
-        {/* Patrón de fondo */}
-        <div className="absolute inset-0 opacity-10 bg-[radial-gradient(#ffffff_1px,transparent_1px)] [background-size:20px_20px]"></div>
-
-        <div className="max-w-6xl mx-auto px-6 relative z-10 text-center">
-            <h2 className="font-heading text-3xl md:text-4xl font-bold mb-16">Lo que dicen nuestros socios</h2>
-            
-            <div className="grid md:grid-cols-3 gap-8">
-                {/* Testimonio 1 */}
-                <div className="bg-white/5 p-8 rounded-2xl border border-white/10 hover:border-lh-gold transition-colors">
-                    <div className="flex justify-center mb-4">
-                        {[1,2,3,4,5].map(i => <Star key={i} className="w-4 h-4 text-lh-gold fill-current" />)}
-                    </div>
-                    <p className="text-gray-300 italic mb-6">"La transparencia en los reportes de obra y la puntualidad en los retornos hacen de 4LH mi opción preferida para diversificar en dólares."</p>
-                    <div>
-                        <h4 className="font-bold text-white">Carlos M.</h4>
-                        <p className="text-xs text-lh-gold uppercase tracking-widest">Inversor desde Colombia</p>
-                    </div>
-                </div>
-
-                {/* Testimonio 2 */}
-                <div className="bg-white/5 p-8 rounded-2xl border border-white/10 hover:border-lh-gold transition-colors transform md:-translate-y-4">
-                    <div className="flex justify-center mb-4">
-                        {[1,2,3,4,5].map(i => <Star key={i} className="w-4 h-4 text-lh-gold fill-current" />)}
-                    </div>
-                    <p className="text-gray-300 italic mb-6">"Compré mi casa en pre-construcción con ellos en North Port. El proceso fue impecable y la calidad de los acabados superó mis expectativas."</p>
-                    <div>
-                        <h4 className="font-bold text-white">Familia Rodríguez</h4>
-                        <p className="text-xs text-lh-gold uppercase tracking-widest">Propietarios</p>
-                    </div>
-                </div>
-
-                {/* Testimonio 3 */}
-                <div className="bg-white/5 p-8 rounded-2xl border border-white/10 hover:border-lh-gold transition-colors">
-                    <div className="flex justify-center mb-4">
-                        {[1,2,3,4,5].map(i => <Star key={i} className="w-4 h-4 text-lh-gold fill-current" />)}
-                    </div>
-                    <p className="text-gray-300 italic mb-6">"Un equipo profesional que entiende tanto el mercado americano como las necesidades del inversor latino. 100% Recomendados."</p>
-                    <div>
-                        <h4 className="font-bold text-white">Andrés V.</h4>
-                        <p className="text-xs text-lh-gold uppercase tracking-widest">Socio Capitalista</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-      </section>
-
-    </div>
-  );
+    );
 };
 
 export default Home;

@@ -7,15 +7,45 @@ import {
   TrendingUp,
   BadgeDollarSign,
   FileText,
-  Pickaxe,
-  Building2,
-  PaintBucket,
-  HandCoins
+  Megaphone, 
+  DollarSign
 } from 'lucide-react';
+
+// --- DATOS DEL CICLO DE INVERSIÓN (ENFOQUE FINANCIERO ACTUALIZADO) ---
+const investmentCycle = [
+  {
+    id: 1,
+    step: "01",
+    title: "Estructuración Legal",
+    description: "Firma de contrato y constitución de vehículo legal (LLC). Su capital entra seguro a una cuenta Escrow gestionada por terceros.",
+    icon: <FileText className="w-6 h-6 text-lh-gold" />
+  },
+  {
+    id: 2,
+    step: "02",
+    title: "Asignación de Activo",
+    description: "Su capital se vincula a un lote específico. Usted recibe los títulos que certifican su participación legal en la propiedad.",
+    icon: <TrendingUp className="w-6 h-6 text-lh-gold" />
+  },
+  {
+    id: 3,
+    step: "03",
+    title: "Desarrollo y Valorización",
+    description: "Durante la construcción (10-12 meses), su inversión gana valor (Equity) automáticamente a medida que la obra avanza.",
+    icon: <Megaphone className="w-6 h-6 text-lh-gold" />
+  },
+  {
+    id: 4,
+    step: "04",
+    title: "Venta y Retorno",
+    description: "Cierre de venta (Closing). Se liquida la inversión y se transfiere su capital más los rendimientos pactados a su cuenta.",
+    icon: <DollarSign className="w-6 h-6 text-lh-gold" />
+  }
+];
 
 const Investors = () => {
   return (
-    <div className="pt-20 bg-gray-50 overflow-x-hidden"> {/* overflow-x-hidden evita scroll horizontal indeseado */}
+    <div className="pt-20 bg-gray-50 overflow-x-hidden">
 
       {/* 1. HERO RESPONSIVE */}
       <section className="relative h-[60vh] md:h-[70vh] flex items-center justify-center overflow-hidden">
@@ -47,10 +77,9 @@ const Investors = () => {
         </div>
       </section>
 
-      {/* 2. DATOS QUE IMPACTAN (Grid Responsivo) */}
+      {/* 2. DATOS QUE IMPACTAN */}
       <section className="relative z-20 px-4 md:px-10 -mt-10">
         <div className="bg-white shadow-xl rounded-2xl border-b border-gray-100 p-8 md:p-12 max-w-7xl mx-auto">
-          {/* En móvil: 1 columna (grid-cols-1) o 2 (grid-cols-2). En PC: 4 columnas */}
           <div className="grid grid-cols-2 md:grid-cols-4 gap-y-8 gap-x-4 text-center">
             <div>
               <div className="text-3xl md:text-5xl font-sans font-bold text-lh-blue mb-2">
@@ -83,7 +112,7 @@ const Investors = () => {
         </div>
       </section>
 
-      {/* 3. NUEVA SECCIÓN: MODELOS DE INVERSIÓN (Propuestas) */}
+      {/* 3. MODELOS DE INVERSIÓN */}
       <section className="py-16 md:py-24 bg-white">
         <div className="max-w-7xl mx-auto px-6">
           <div className="text-center mb-12 md:mb-16">
@@ -128,9 +157,9 @@ const Investors = () => {
                 <p className="text-gray-600 leading-relaxed mb-6 text-sm md:text-base">
                   Ponga su patrimonio a nombre suyo. Construimos uno de nuestros 6 modelos en su propio lote.
                 </p>
-                <button className="w-full py-3 border-2 border-gray-200 text-gray-600 font-bold rounded hover:border-lh-blue hover:text-lh-blue transition-colors text-sm md:text-base">
+                <Link to="/proyectos" className="block w-full py-3 border-2 border-gray-200 text-gray-600 font-bold rounded hover:border-lh-blue hover:text-lh-blue transition-colors text-sm md:text-base text-center">
                   Ver Modelos de Casas
-                </button>
+                </Link>
               </div>
             </div>
           </div>
@@ -145,7 +174,7 @@ const Investors = () => {
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.8 }}
-            className="order-2 md:order-1" // En móvil la gráfica va primero (opcional) o el texto
+            className="order-2 md:order-1"
           >
             <h2 className="font-heading text-3xl md:text-4xl text-lh-blue mb-6">Rentabilidad Superior</h2>
             <p className="text-gray-600 text-base md:text-lg leading-relaxed mb-6">
@@ -172,64 +201,59 @@ const Investors = () => {
         </div>
       </section>
 
-      {/* 5. TIMELINE PREMIUM RESPONSIVE */}
-      <section className="py-16 md:py-24 bg-lh-blue text-white overflow-hidden relative">
-        <div className="absolute inset-0 opacity-5 bg-[radial-gradient(#d4af37_1px,transparent_1px)] [background-size:20px_20px]"></div>
+      {/* 5. CICLO DE CAPITAL (NUEVO DISEÑO HIGH CONTRAST) */}
+      <section className="py-24 bg-black text-white relative overflow-hidden">
+          
+          {/* Patrón de puntos sutil en el fondo */}
+          <div className="absolute inset-0 opacity-20 bg-[radial-gradient(#333_1px,transparent_1px)] [background-size:20px_20px]"></div>
 
-        <div className="max-w-6xl mx-auto px-6 relative z-10">
-          <div className="text-center mb-16">
-            <span className="text-lh-gold font-bold tracking-widest text-sm uppercase">Paso a Paso</span>
-            <h2 className="font-heading text-3xl md:text-5xl mt-2 mb-6">Etapas del Proyecto</h2>
-          </div>
+          <div className="max-w-5xl mx-auto px-6 relative z-10">
+              <div className="text-center mb-20">
+                  <span className="text-lh-gold font-bold tracking-widest uppercase text-sm">Modelo de Negocio</span>
+                  <h2 className="font-heading text-4xl md:text-5xl font-bold mt-2 text-white">El Ciclo de su Capital</h2>
+              </div>
 
-          {/* CONTENEDOR TIMELINE: En móvil quitamos el margen central y usamos borde izquierdo simple */}
-          <div className="relative md:border-l-2 md:border-gray-700/50 md:ml-auto md:mr-auto space-y-12 md:space-y-16 pl-0 md:pl-0">
+              <div className="relative">
+                  {/* LÍNEA CENTRAL */}
+                  <div className="absolute left-4 md:left-1/2 top-0 bottom-0 w-px bg-gray-800 md:-translate-x-1/2"></div>
 
-            <TimelineItem
-              icon={<FileText className="w-6 h-6 md:w-8 md:h-8" />}
-              title="Selección y Permisos"
-              desc="Selección estratégica del lote. Tramitamos todos los permisos necesarios ante la ciudad."
-              side="left"
-              step="01"
-            />
+                  <div className="space-y-16">
+                      {investmentCycle.map((item, index) => (
+                          <div key={item.id} className={`relative flex flex-col md:flex-row items-center ${index % 2 === 0 ? 'md:flex-row-reverse' : ''}`}>
+                              
+                              {/* MITAD VACÍA */}
+                              <div className="flex-1 hidden md:block"></div>
 
-            <TimelineItem
-              icon={<Pickaxe className="w-6 h-6 md:w-8 md:h-8" />}
-              title="Adecuación y Fundaciones"
-              desc="Preparación del terreno y movimientos de tierra. Vaciado de fundaciones de concreto reforzado."
-              side="right"
-              step="02"
-            />
+                              {/* ICONO CENTRAL (Negro con borde amarillo) */}
+                              <div className="absolute left-4 md:left-1/2 w-14 h-14 bg-black rounded-full flex items-center justify-center border-2 border-lh-gold z-10 md:-translate-x-1/2 transform -translate-y-1/2 md:translate-y-0 mt-8 md:mt-0 shadow-[0_0_15px_rgba(255,212,0,0.3)]">
+                                  {item.icon}
+                              </div>
 
-            <TimelineItem
-              icon={<Building2 className="w-6 h-6 md:w-8 md:h-8" />}
-              title="Construcción Vertical"
-              desc="Levantamiento de muros (block), estructura de techo y cerramientos."
-              side="left"
-              step="03"
-            />
+                              {/* TARJETA (BLANCA) - ESTILO NUEVO */}
+                              <div className="flex-1 pl-16 md:pl-0 w-full">
+                                  <div className={`bg-white p-8 rounded-xl shadow-2xl relative group ${index % 2 === 0 ? 'md:mr-16' : 'md:ml-16'}`}>
+                                      
+                                      {/* Número Gigante de Fondo (Gris muy claro) */}
+                                      <span className="absolute top-2 right-4 text-6xl font-bold text-gray-100 select-none">
+                                          {item.step}
+                                      </span>
+                                      
+                                      <h3 className="text-xl font-bold text-black mb-3 relative z-10">{item.title}</h3>
+                                      <p className="text-gray-600 text-sm leading-relaxed relative z-10 font-medium">
+                                          {item.description}
+                                      </p>
+                                  </div>
+                              </div>
 
-            <TimelineItem
-              icon={<PaintBucket className="w-6 h-6 md:w-8 md:h-8" />}
-              title="Acabados y Comercialización"
-              desc="Instalación de pisos, cocinas y detalles estéticos. Iniciamos el marketing."
-              side="right"
-              step="04"
-            />
-
-            <TimelineItem
-              icon={<HandCoins className="w-6 h-6 md:w-8 md:h-8" />}
-              title="Venta y Distribución"
-              desc="Cierre oficial en notaría y distribución de capital y rendimientos."
-              side="left"
-              step="05"
-            />
+                          </div>
+                      ))}
+                  </div>
+              </div>
 
           </div>
-        </div>
       </section>
 
-      {/* 6. POR QUÉ SOUTH FLORIDA (Responsive) */}
+      {/* 6. POR QUÉ SOUTH FLORIDA */}
       <section className="py-16 md:py-24 bg-white">
         <div className="max-w-7xl mx-auto px-6">
           <div className="grid md:grid-cols-2 gap-12 items-center">
@@ -281,7 +305,7 @@ const Investors = () => {
         </div>
       </section>
 
-      {/* 7. PREGUNTAS FRECUENTES (FAQ) - RESPONSIVE */}
+      {/* 7. PREGUNTAS FRECUENTES (FAQ) */}
       <section className="py-16 md:py-24 bg-gray-50 border-t border-gray-200">
         <div className="max-w-4xl mx-auto px-6">
           <div className="text-center mb-10 md:mb-16">
@@ -290,55 +314,23 @@ const Investors = () => {
           </div>
 
           <div className="space-y-4">
-            {/* Pregunta 1 */}
             <details className="group bg-white p-5 md:p-6 rounded-lg shadow-sm cursor-pointer border-l-4 border-transparent hover:border-lh-gold transition-all">
               <summary className="flex justify-between items-center font-bold text-lh-blue list-none text-base md:text-lg">
                 <span>¿Cuál es el monto mínimo de inversión?</span>
-                <span className="transition-transform duration-300 group-open:rotate-180 text-lh-gold">
-                  <svg fill="none" height="24" shapeRendering="geometricPrecision" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" viewBox="0 0 24 24" width="24"><path d="M6 9l6 6 6-6"></path></svg>
-                </span>
+                <span className="transition-transform duration-300 group-open:rotate-180 text-lh-gold">▼</span>
               </summary>
               <p className="text-gray-600 mt-4 text-sm md:text-base leading-relaxed">
-                Nuestros modelos de participación suelen comenzar desde montos accesibles para socios capitalistas en proyectos compartidos. Para la construcción de vivienda propia, el monto depende del modelo de casa elegido (tenemos 6 modelos). Contáctenos para ver la lista de precios actualizada.
+                Nuestros modelos de participación suelen comenzar desde montos accesibles para socios capitalistas. Contáctenos para ver la lista de precios actualizada.
               </p>
             </details>
 
-            {/* Pregunta 2 */}
             <details className="group bg-white p-5 md:p-6 rounded-lg shadow-sm cursor-pointer border-l-4 border-transparent hover:border-lh-gold transition-all">
               <summary className="flex justify-between items-center font-bold text-lh-blue list-none text-base md:text-lg">
                 <span>¿Qué garantías tengo sobre mi capital?</span>
-                <span className="transition-transform duration-300 group-open:rotate-180 text-lh-gold">
-                  <svg fill="none" height="24" shapeRendering="geometricPrecision" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" viewBox="0 0 24 24" width="24"><path d="M6 9l6 6 6-6"></path></svg>
-                </span>
+                <span className="transition-transform duration-300 group-open:rotate-180 text-lh-gold">▼</span>
               </summary>
               <p className="text-gray-600 mt-4 text-sm md:text-base leading-relaxed">
-                Su inversión está 100% respaldada por activos tangibles (la tierra y la construcción). Trabajamos con contratos legales transparentes en Florida y el capital se gestiona a través de *Title Companies* (Compañías de Título) certificadas, asegurando que el dinero solo se libera contra hitos de obra verificados.
-              </p>
-            </details>
-
-            {/* Pregunta 3 */}
-            <details className="group bg-white p-5 md:p-6 rounded-lg shadow-sm cursor-pointer border-l-4 border-transparent hover:border-lh-gold transition-all">
-              <summary className="flex justify-between items-center font-bold text-lh-blue list-none text-base md:text-lg">
-                <span>¿Puedo invertir si soy extranjero?</span>
-                <span className="transition-transform duration-300 group-open:rotate-180 text-lh-gold">
-                  <svg fill="none" height="24" shapeRendering="geometricPrecision" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" viewBox="0 0 24 24" width="24"><path d="M6 9l6 6 6-6"></path></svg>
-                </span>
-              </summary>
-              <p className="text-gray-600 mt-4 text-sm md:text-base leading-relaxed">
-                Absolutamente. Una gran parte de nuestros inversores son internacionales (Colombia, Chile, España, etc.). Le asesoramos gratuitamente sobre cómo estructurar la inversión (generalmente vía LLC) para proteger su patrimonio en dólares y optimizar su carga fiscal en EE.UU.
-              </p>
-            </details>
-
-            {/* Pregunta 4 */}
-            <details className="group bg-white p-5 md:p-6 rounded-lg shadow-sm cursor-pointer border-l-4 border-transparent hover:border-lh-gold transition-all">
-              <summary className="flex justify-between items-center font-bold text-lh-blue list-none text-base md:text-lg">
-                <span>¿Cuándo recibo mis rendimientos?</span>
-                <span className="transition-transform duration-300 group-open:rotate-180 text-lh-gold">
-                  <svg fill="none" height="24" shapeRendering="geometricPrecision" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" viewBox="0 0 24 24" width="24"><path d="M6 9l6 6 6-6"></path></svg>
-                </span>
-              </summary>
-              <p className="text-gray-600 mt-4 text-sm md:text-base leading-relaxed">
-                En el modelo de "Participación", el capital más la utilidad se distribuyen inmediatamente después del cierre de venta (Closing) de la propiedad a un tercero. En el modelo de "Renta", usted empieza a recibir ingresos mensuales tan pronto la propiedad se alquila.
+                Su inversión está 100% respaldada por activos tangibles. Trabajamos con contratos legales transparentes y compañías de título certificadas.
               </p>
             </details>
           </div>
@@ -348,60 +340,12 @@ const Investors = () => {
       {/* CTA FINAL */}
       <section className="py-16 md:py-20 text-center bg-gray-50">
         <h2 className="font-heading text-3xl md:text-4xl text-lh-blue mb-8">¿Hablamos de Números?</h2>
-        <button className="bg-lh-gold hover:bg-yellow-600 text-white px-8 py-3 md:px-10 md:py-4 rounded font-bold tracking-widest transition-all transform hover:-translate-y-1 shadow-lg text-sm md:text-base">
+        <Link to="/contacto" className="bg-lh-gold hover:bg-yellow-600 text-white px-8 py-3 md:px-10 md:py-4 rounded font-bold tracking-widest transition-all transform hover:-translate-y-1 shadow-lg text-sm md:text-base">
           AGENDAR LLAMADA
-        </button>
+        </Link>
       </section>
 
     </div>
-  );
-};
-
-// ---------------------------------------------------------
-// COMPONENTE TIMELINE RESPONSIVE
-// ---------------------------------------------------------
-const TimelineItem = ({ icon, title, desc, side, step }) => {
-  const isLeft = side === 'left';
-
-  return (
-    // En Móvil: flex-col (uno debajo de otro). En Desktop: flex-row
-    <motion.div
-      initial={{ opacity: 0, y: 30 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, margin: "-50px" }}
-      transition={{ duration: 0.6 }}
-      className={`flex flex-col md:flex-row items-start md:items-center justify-between w-full md:relative ${isLeft ? 'md:flex-row-reverse' : ''}`}
-    >
-      {/* Espaciador Desktop */}
-      <div className="hidden md:block w-5/12"></div>
-
-      {/* PUNTO CENTRAL / LATERAL */}
-      {/* En Móvil: Posición relativa, margen inferior. En Desktop: Absolute center */}
-      <div className="flex items-center mb-4 md:mb-0 md:absolute md:left-1/2 md:-ml-[30px] z-10">
-        <div className="w-[50px] h-[50px] md:w-[60px] md:h-[60px] rounded-full bg-lh-blue border-4 border-lh-gold flex items-center justify-center text-lh-gold shadow-[0_0_15px_rgba(212,175,55,0.4)] shrink-0">
-          {icon}
-        </div>
-        {/* Línea conectora visible solo en Móvil para unir los puntos visualmente si quisieras, 
-                    pero por limpieza la omitimos o la hacemos sutil */}
-        <div className="md:hidden h-1 bg-gray-700 w-4 ml-2"></div>
-        <span className="md:hidden text-2xl font-bold text-lh-gold ml-2">{step}</span>
-      </div>
-
-      <div className="w-full md:w-5/12 pl-4 md:pl-0 border-l-2 border-gray-700 md:border-none ml-6 md:ml-0 pb-8 md:pb-0">
-        {/* TARJETA BLANCA */}
-        <div className="bg-white p-6 md:p-8 rounded-xl shadow-xl border-t-4 border-lh-gold relative md:ml-0 group hover:-translate-y-2 transition-transform duration-300">
-          {/* Número de fondo (Solo Desktop) */}
-          <span className="hidden md:block absolute top-2 right-4 text-6xl font-bold text-gray-100 -z-0 pointer-events-none group-hover:text-gray-200 transition-colors">
-            {step}
-          </span>
-
-          <div className="relative z-10">
-            <h3 className="text-xl md:text-2xl font-heading font-bold text-lh-blue mb-2 md:mb-4">{title}</h3>
-            <p className="text-gray-600 text-sm md:text-lg leading-relaxed font-sans">{desc}</p>
-          </div>
-        </div>
-      </div>
-    </motion.div>
   );
 };
 

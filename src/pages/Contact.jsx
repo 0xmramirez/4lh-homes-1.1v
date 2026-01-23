@@ -1,222 +1,160 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
+import emailjs from '@emailjs/browser';
 import { motion } from 'framer-motion';
-import { Mail, Phone, MapPin, Clock, Send, CheckCircle } from 'lucide-react';
+import { Mail, Phone, MapPin, Send, CheckCircle, AlertCircle } from 'lucide-react';
 
 const Contact = () => {
-  const [formStatus, setFormStatus] = useState('idle'); // idle, loading, success
+  const form = useRef();
+  const [status, setStatus] = useState(''); // 'sending', 'success', 'error'
 
-  const handleSubmit = (e) => {
+  const sendEmail = (e) => {
     e.preventDefault();
-    setFormStatus('loading');
-    
-    // Simulación de envío
-    setTimeout(() => {
-      setFormStatus('success');
-    }, 1500);
+    setStatus('sending');
+
+    const SERVICE_ID = import.meta.env.VITE_SERVICE_ID;
+    const TEMPLATE_ID = import.meta.env.VITE_TEMPLATE_ID; 
+    const PUBLIC_KEY = import.meta.env.VITE_PUBLIC_KEY;
+
+    console.log("Intentando enviar con:");
+    console.log("Service ID:", SERVICE_ID);
+    console.log("Template ID:", TEMPLATE_ID);
+    console.log("Public Key:", PUBLIC_KEY);
+
+    emailjs.sendForm(SERVICE_ID, TEMPLATE_ID, form.current, PUBLIC_KEY)
+      .then((result) => {
+          setStatus('success');
+          form.current.reset();
+          setTimeout(() => setStatus(''), 5000); // Limpiar mensaje a los 5s
+      }, (error) => {
+          setStatus('error');
+          console.log(error.text);
+      });
   };
 
   return (
-    <div className="pt-20 min-h-screen bg-gray-50">
+    <div className="pt-20 font-sans bg-gray-50 min-h-screen">
       
-      {/* 1. HERO PREMIUM (Con imagen de fondo y más altura) */}
-      <section className="relative h-[50vh] min-h-[400px] flex items-center justify-center overflow-hidden">
-        
-        {/* IMAGEN DE FONDO */}
-        <div className="absolute inset-0">
-            <img 
-                src="https://images.unsplash.com/photo-1497366216548-37526070297c?q=80&w=2000&auto=format&fit=crop" 
-                alt="Office Luxury" 
-                className="w-full h-full object-cover"
-            />
-            {/* Superposición azul oscura para que el texto se lea perfecto */}
-            <div className="absolute inset-0 bg-lh-blue/85 mix-blend-multiply"></div>
-        </div>
-
-        {/* CONTENIDO CENTRADO */}
-        <div className="relative z-10 text-center px-6 max-w-4xl mx-auto">
-            <motion.span 
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6 }}
-                className="text-lh-gold font-bold tracking-[0.2em] uppercase text-sm md:text-base mb-4 block"
-            >
-                Estamos listos para escucharle
-            </motion.span>
-            
-            <motion.h1 
-                initial={{ opacity: 0, y: 30 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.8, delay: 0.2 }}
-                className="font-heading text-5xl md:text-7xl font-bold text-white mb-6 leading-tight"
-            >
-                Hablemos de su <span className="text-lh-gold italic">Futuro</span>
-            </motion.h1>
-            
-            <motion.p 
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                transition={{ duration: 0.8, delay: 0.4 }}
-                className="text-gray-200 text-lg md:text-xl font-light max-w-2xl mx-auto"
-            >
-                Un equipo de expertos espera para convertir sus objetivos de inversión en una estrategia sólida en Florida.
-            </motion.p>
-        </div>
+      {/* HEADER SIMPLE */}
+      <section className="bg-lh-blue py-20 text-center px-6">
+        <h1 className="font-heading text-4xl md:text-5xl text-white font-bold mb-4">
+            Empecemos la Conversación
+        </h1>
+        <p className="text-gray-300 max-w-2xl mx-auto font-light text-lg">
+            Estamos listos para asesorarle en su próximo proyecto de inversión o construcción en Florida.
+        </p>
       </section>
 
-      <div className="max-w-7xl mx-auto px-6 py-16">
-        <div className="grid lg:grid-cols-2 gap-12 items-start">
+      <div className="max-w-7xl mx-auto px-6 py-16 grid md:grid-cols-2 gap-16">
+        
+        {/* 1. INFORMACIÓN DE CONTACTO (Izquierda) */}
+        <div className="space-y-10">
+            <div>
+                <h2 className="font-heading text-3xl font-bold text-lh-blue mb-6">Datos de Contacto</h2>
+                <p className="text-gray-600 mb-8">
+                    Visítenos en nuestras oficinas o contáctenos directamente. Nuestro equipo habla español e inglés.
+                </p>
+            </div>
+
+            <div className="space-y-6">
+                <div className="flex items-start">
+                    <div className="w-12 h-12 bg-lh-gold/10 rounded-full flex items-center justify-center text-lh-gold shrink-0 mr-4">
+                        <MapPin className="w-6 h-6" />
+                    </div>
+                    <div>
+                        <h3 className="font-bold text-lg text-lh-blue">Oficina Principal</h3>
+                        <p className="text-gray-600">123 Investment Blvd, Suite 400<br/>Miami, FL 33130</p>
+                    </div>
+                </div>
+
+                <div className="flex items-start">
+                    <div className="w-12 h-12 bg-lh-gold/10 rounded-full flex items-center justify-center text-lh-gold shrink-0 mr-4">
+                        <Mail className="w-6 h-6" />
+                    </div>
+                    <div>
+                        <h3 className="font-bold text-lg text-lh-blue">Correo Electrónico</h3>
+                        <p className="text-gray-600">info@4lhgroup.com</p>
+                        <p className="text-xs text-gray-400 mt-1">Respuesta en menos de 24h</p>
+                    </div>
+                </div>
+
+                <div className="flex items-start">
+                    <div className="w-12 h-12 bg-lh-gold/10 rounded-full flex items-center justify-center text-lh-gold shrink-0 mr-4">
+                        <Phone className="w-6 h-6" />
+                    </div>
+                    <div>
+                        <h3 className="font-bold text-lg text-lh-blue">Teléfono</h3>
+                        <p className="text-gray-600">+1 (305) 555-0123</p>
+                        <p className="text-gray-600">+1 (305) 555-0124</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        {/* 2. FORMULARIO (Derecha) */}
+        <div className="bg-white p-8 md:p-10 rounded-2xl shadow-xl border border-gray-100">
+            <h3 className="font-heading text-2xl font-bold text-lh-blue mb-6">Envíenos un mensaje</h3>
             
-            {/* 2. COLUMNA IZQUIERDA: INFORMACIÓN */}
-            <motion.div 
-                initial={{ opacity: 0, x: -30 }}
-                animate={{ opacity: 1, x: 0 }}
-                transition={{ duration: 0.6 }}
-                className="space-y-8"
-            >
-                <div>
-                    <h2 className="font-heading text-3xl text-lh-blue font-bold mb-6">Información de Contacto</h2>
-                    <p className="text-gray-600 leading-relaxed mb-8">
-                        Preferimos el trato directo. Llámenos, escríbanos o visítenos en nuestras oficinas para una asesoría personalizada.
-                    </p>
-                </div>
-
+            <form ref={form} onSubmit={sendEmail} className="space-y-6">
+                
                 <div className="grid md:grid-cols-2 gap-6">
-                    {/* Tarjeta Teléfono */}
-                    <div className="bg-white p-6 rounded-xl shadow-sm border border-gray-100 hover:border-lh-gold transition-colors group">
-                        <div className="w-12 h-12 bg-blue-50 rounded-full flex items-center justify-center mb-4 group-hover:bg-lh-blue transition-colors">
-                            <Phone className="w-6 h-6 text-lh-blue group-hover:text-lh-gold transition-colors" />
-                        </div>
-                        <h3 className="font-bold text-lh-blue mb-1">Llámenos</h3>
-                        <p className="text-gray-500 text-sm mb-2">Lunes a Viernes, 9am - 6pm</p>
-                        <a href="tel:+15550000000" className="text-lh-gold font-bold hover:underline">+1 (555) 000-0000</a>
+                    <div>
+                        <label className="block text-sm font-bold text-gray-700 mb-2">Nombre</label>
+                        <input type="text" name="user_name" required className="w-full bg-gray-50 border border-gray-200 rounded px-4 py-3 focus:outline-none focus:border-lh-gold transition-colors" placeholder="Su nombre" />
                     </div>
-
-                    {/* Tarjeta Email */}
-                    <div className="bg-white p-6 rounded-xl shadow-sm border border-gray-100 hover:border-lh-gold transition-colors group">
-                        <div className="w-12 h-12 bg-blue-50 rounded-full flex items-center justify-center mb-4 group-hover:bg-lh-blue transition-colors">
-                            <Mail className="w-6 h-6 text-lh-blue group-hover:text-lh-gold transition-colors" />
-                        </div>
-                        <h3 className="font-bold text-lh-blue mb-1">Escríbanos</h3>
-                        <p className="text-gray-500 text-sm mb-2">Respuesta en menos de 24h</p>
-                        <a href="mailto:info@4lhgroup.com" className="text-lh-gold font-bold hover:underline">info@4lhgroup.com</a>
+                    <div>
+                        <label className="block text-sm font-bold text-gray-700 mb-2">Teléfono</label>
+                        <input type="tel" name="user_phone" className="w-full bg-gray-50 border border-gray-200 rounded px-4 py-3 focus:outline-none focus:border-lh-gold transition-colors" placeholder="+1 (555)..." />
                     </div>
                 </div>
 
-                {/* Ubicaciones */}
-                <div className="bg-white p-8 rounded-xl shadow-lg border-l-4 border-lh-gold">
-                    <h3 className="font-heading text-xl font-bold text-lh-blue mb-6 flex items-center">
-                        <MapPin className="w-5 h-5 mr-2 text-lh-gold" /> Nuestras Oficinas
-                    </h3>
-                    
-                    <div className="space-y-6">
-                        <div className="relative pl-6 border-l border-gray-200">
-                            <div className="absolute -left-[5px] top-2 w-2.5 h-2.5 rounded-full bg-gray-300"></div>
-                            <h4 className="font-bold text-gray-800">Oficina Principal (Miami)</h4>
-                            <p className="text-gray-500 text-sm">123 Brickell Ave, Suite 400<br/>Miami, FL 33131</p>
-                        </div>
-                        
-                        <div className="relative pl-6 border-l border-gray-200">
-                            <div className="absolute -left-[5px] top-2 w-2.5 h-2.5 rounded-full bg-lh-gold"></div>
-                            <h4 className="font-bold text-gray-800">Centro de Operaciones (North Port)</h4>
-                            <p className="text-gray-500 text-sm">456 Tamiami Trail<br/>North Port, FL 34287</p>
-                        </div>
-                    </div>
+                <div>
+                    <label className="block text-sm font-bold text-gray-700 mb-2">Correo Electrónico</label>
+                    <input type="email" name="user_email" required className="w-full bg-gray-50 border border-gray-200 rounded px-4 py-3 focus:outline-none focus:border-lh-gold transition-colors" placeholder="ejemplo@correo.com" />
                 </div>
-            </motion.div>
 
-            {/* 3. COLUMNA DERECHA: FORMULARIO */}
-            <motion.div 
-                initial={{ opacity: 0, x: 30 }}
-                animate={{ opacity: 1, x: 0 }}
-                transition={{ duration: 0.6, delay: 0.2 }}
-                className="bg-white p-8 md:p-10 rounded-2xl shadow-2xl border border-gray-100"
-            >
-                {formStatus === 'success' ? (
-                    <div className="text-center py-12">
-                        <div className="w-20 h-20 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-6">
-                            <CheckCircle className="w-10 h-10 text-green-600" />
-                        </div>
-                        <h3 className="text-2xl font-bold text-lh-blue mb-2">¡Mensaje Enviado!</h3>
-                        <p className="text-gray-500 mb-6">Gracias por contactarnos. Un asesor de 4LH se pondrá en contacto con usted a la brevedad.</p>
-                        <button 
-                            onClick={() => setFormStatus('idle')}
-                            className="text-lh-gold font-bold hover:underline"
-                        >
-                            Enviar otro mensaje
-                        </button>
-                    </div>
-                ) : (
-                    <form onSubmit={handleSubmit} className="space-y-6">
-                        <h3 className="text-xl font-bold text-lh-blue mb-2">Envíenos un mensaje</h3>
-                        
-                        <div className="grid md:grid-cols-2 gap-6">
-                            <div>
-                                <label className="block text-sm font-bold text-gray-700 mb-2">Nombre</label>
-                                <input type="text" className="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-lh-gold transition-all" placeholder="Juan" required />
-                            </div>
-                            <div>
-                                <label className="block text-sm font-bold text-gray-700 mb-2">Apellido</label>
-                                <input type="text" className="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-lh-gold transition-all" placeholder="Pérez" required />
-                            </div>
-                        </div>
+                <div>
+                    <label className="block text-sm font-bold text-gray-700 mb-2">Interés Principal</label>
+                    <select name="interest" className="w-full bg-gray-50 border border-gray-200 rounded px-4 py-3 focus:outline-none focus:border-lh-gold transition-colors">
+                        <option value="Inversión">Quiero Invertir Capital</option>
+                        <option value="Construcción">Construir mi Casa (Lote Propio)</option>
+                        <option value="Compra">Comprar Proyecto Terminado</option>
+                        <option value="Otro">Otro</option>
+                    </select>
+                </div>
 
-                        <div>
-                            <label className="block text-sm font-bold text-gray-700 mb-2">Correo Electrónico</label>
-                            <input type="email" className="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-lh-gold transition-all" placeholder="juan@ejemplo.com" required />
-                        </div>
+                <div>
+                    <label className="block text-sm font-bold text-gray-700 mb-2">Mensaje</label>
+                    <textarea name="message" required rows="4" className="w-full bg-gray-50 border border-gray-200 rounded px-4 py-3 focus:outline-none focus:border-lh-gold transition-colors" placeholder="¿Cómo podemos ayudarle?"></textarea>
+                </div>
 
-                        <div>
-                            <label className="block text-sm font-bold text-gray-700 mb-2">Tipo de Consulta</label>
-                            <select className="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-lh-gold transition-all">
-                                <option>Quiero ser Inversionista (Capital)</option>
-                                <option>Quiero comprar una propiedad</option>
-                                <option>Tengo un terreno para vender</option>
-                                <option>Otra consulta</option>
-                            </select>
-                        </div>
+                <button 
+                    type="submit" 
+                    disabled={status === 'sending'}
+                    className={`w-full py-4 rounded font-bold uppercase tracking-widest text-white transition-all flex items-center justify-center gap-2 ${status === 'sending' ? 'bg-gray-400 cursor-not-allowed' : 'bg-lh-gold hover:bg-black shadow-lg hover:shadow-xl'}`}
+                >
+                    {status === 'sending' ? 'Enviando...' : (
+                        <>Enviar Mensaje <Send className="w-4 h-4" /></>
+                    )}
+                </button>
 
-                        <div>
-                            <label className="block text-sm font-bold text-gray-700 mb-2">Mensaje</label>
-                            <textarea rows="4" className="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-lh-gold transition-all" placeholder="¿En qué podemos ayudarle?" required></textarea>
-                        </div>
-
-                        <button 
-                            type="submit" 
-                            disabled={formStatus === 'loading'}
-                            className="w-full bg-lh-blue text-white font-bold py-4 rounded-lg hover:bg-gray-800 transition-all flex items-center justify-center gap-2"
-                        >
-                            {formStatus === 'loading' ? 'Enviando...' : (
-                                <>Enviar Mensaje <Send className="w-4 h-4" /></>
-                            )}
-                        </button>
-                    </form>
+                {/* MENSAJES DE ESTADO */}
+                {status === 'success' && (
+                    <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} className="flex items-center gap-2 text-green-600 bg-green-50 p-4 rounded border border-green-200">
+                        <CheckCircle className="w-5 h-5" />
+                        <span>¡Mensaje enviado! Nos pondremos en contacto pronto.</span>
+                    </motion.div>
                 )}
-            </motion.div>
+                
+                {status === 'error' && (
+                    <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} className="flex items-center gap-2 text-red-600 bg-red-50 p-4 rounded border border-red-200">
+                        <AlertCircle className="w-5 h-5" />
+                        <span>Hubo un error. Por favor intente más tarde o escríbanos directo.</span>
+                    </motion.div>
+                )}
 
+            </form>
         </div>
       </div>
-      
-      {/* 4. MAPA VISUAL (Imagen estática elegante) */}
-      <section className="h-[400px] w-full relative group overflow-hidden">
-        {/* Aquí usaremos una imagen de mapa estilizada. Si tuvieras API Key de Google Maps, iría aquí */}
-        <img 
-            src="https://images.unsplash.com/photo-1524661135-423995f22d0b?q=80&w=2074&auto=format&fit=crop" 
-            alt="Map Location" 
-            className="w-full h-full object-cover opacity-80 group-hover:scale-105 transition-transform duration-700"
-        />
-        <div className="absolute inset-0 bg-lh-blue/30 flex items-center justify-center">
-            <a 
-                href="https://goo.gl/maps/tucodigodemapa" 
-                target="_blank" 
-                rel="noreferrer"
-                className="bg-white text-lh-blue px-8 py-3 rounded-full font-bold shadow-2xl hover:bg-lh-gold hover:text-black transition-colors flex items-center gap-2"
-            >
-                <MapPin className="w-5 h-5" />
-                Ver Ubicación en Google Maps
-            </a>
-        </div>
-      </section>
-
     </div>
   );
 };

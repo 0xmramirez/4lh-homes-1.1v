@@ -9,21 +9,21 @@ const About = () => {
     {
       id: 1,
       name: "Rodrigo Buitrago",
-      role: "CEO & Co-Founder",
+      role: "Marketing and Sales Manager",
       image: "/images/equipo/PHOTO-2024-05-24-15-06-41.webp",
       bio: "Experto en desarrollo inmobiliario con más de 15 años de experiencia liderando proyectos en Colombia y Florida."
     },
     {
       id: 2,
       name: "Juan David Ramírez",
-      role: "Director de Operaciones",
+      role: "Marketing and Communications",
       image: "/images/equipo/IMG_1744.webp",
       bio: "Especialista en gestión de obra y optimización de recursos. Garantiza la ejecución perfecta de cada vivienda."
     },
     {
       id: 3,
       name: "Isabel Ochoa",
-      role: "Head of Sales",
+      role: "Design and Sales",
       image: "/images/equipo/IMG_9126 2.webp",
       bio: "Encargada de las relaciones con inversionistas y la estrategia de comercialización de activos."
     }
@@ -64,16 +64,30 @@ const About = () => {
       {/* 2. NUESTRA HISTORIA (TEXTO + IMAGEN) */}
       <section className="py-20 max-w-7xl mx-auto px-6">
         <div className="grid md:grid-cols-2 gap-16 items-center">
+          {/* ... dentro del grid de About.jsx (Columna Izquierda) ... */}
+
           <div className="relative">
-            <img
-              src="https://images.unsplash.com/photo-1600880292203-757bb62b4baf?q=80&w=1000&auto=format&fit=crop"
-              alt="Team meeting"
-              className="rounded-2xl shadow-2xl w-full object-cover h-[500px]"
-            />
-            <div className="absolute -bottom-6 -right-6 bg-white p-8 rounded-xl shadow-xl max-w-xs border-l-4 border-lh-gold hidden md:block">
-              <p className="font-heading text-5xl font-bold text-lh-blue mb-2">15+</p>
-              <p className="text-gray-500 text-sm uppercase tracking-wider">Años de Experiencia Combinada</p>
+            {/* CONTENEDOR DEL VIDEO (Formato 16:9 automático) */}
+            <div className="relative w-full aspect-video rounded-2xl overflow-hidden shadow-2xl border border-gray-200 group">
+              <iframe
+                className="w-full h-full"
+                /* CAMBIA EL ID "dQw4w9WgXcQ" POR EL DE TU VIDEO */
+                src="https://www.youtube.com/embed/pRNF1pjErTU"
+                title="4LH Group Video"
+                frameBorder="0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowFullScreen
+              ></iframe>
             </div>
+
+            {/* TARJETA FLOTANTE "15+ AÑOS" (La mantenemos pero ajustada para no tapar mucho) */}
+            <div className="absolute -bottom-6 -right-6 bg-white p-6 rounded-xl shadow-xl border-l-4 border-lh-gold max-w-[200px] hidden md:block z-10">
+              <p className="font-heading text-4xl font-bold text-lh-blue mb-1">15+</p>
+              <p className="text-xs text-gray-500 font-sans tracking-wider uppercase">Años de experiencia combinada</p>
+            </div>
+
+            {/* Decoración de fondo (opcional) */}
+            <div className="absolute -top-4 -left-4 w-full h-full border-2 border-lh-gold/20 rounded-2xl -z-10"></div>
           </div>
 
           <div>

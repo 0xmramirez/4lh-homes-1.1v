@@ -13,7 +13,7 @@ export default {
       },
       // --- AQUI AGREGAMOS LAS FUENTES ---
       fontFamily: {
-        sans: ['"Lato"', 'sans-serif'],        // Texto limpio
+        sans: ['Roboto', 'sans-serif'],        // Texto limpio
         heading: ['"Playfair Display"', 'serif'], // Títulos elegantes
       }
     },

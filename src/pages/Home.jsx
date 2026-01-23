@@ -3,9 +3,9 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import { ArrowRight, Star, Shield, TrendingUp, Building, Wallet, HardHat } from 'lucide-react';
 
-// IMÁGENES DEL CARRUSEL (Asegúrate de tener estas o usar las tuyas locales)
+// IMÁGENES DEL CARRUSEL
 const heroImages = [
-    "https://images.unsplash.com/photo-1600596542815-e32c2159f828?q=80&w=2000&auto=format&fit=crop",
+    "/images/carrusel/imgCarr2.png",
     "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?q=80&w=2000&auto=format&fit=crop",
     "https://images.unsplash.com/photo-1592595896551-12b371d546d5?q=80&w=2000&auto=format&fit=crop"
 ];
@@ -21,7 +21,7 @@ const Home = () => {
     }, []);
 
     return (
-        <div className="font-sans text-gray-800">
+        <div className="font-sans text-gray-800"> {/* Roboto por defecto */}
 
             {/* 1. HERO SECTION (CARRUSEL) */}
             <section className="relative h-screen flex items-center justify-center overflow-hidden">
@@ -47,24 +47,29 @@ const Home = () => {
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ duration: 0.8 }}
                     >
-                        <span className="text-lh-gold font-bold tracking-[0.3em] uppercase text-sm md:text-base mb-6 block">
+                        {/* Eyebrow: Roboto + Uppercase + Tracking */}
+                        <span className="text-lh-gold font-bold tracking-[0.3em] uppercase text-sm md:text-base mb-6 block font-sans">
                             Bienvenidos a 4LH Group
                         </span>
+                        
+                        {/* Título Principal: Playfair Display */}
                         <h1 className="font-heading text-5xl md:text-7xl lg:text-8xl font-bold text-white mb-8 leading-tight">
                             Inversión Inmobiliaria <br />
                             <span className="text-transparent bg-clip-text bg-gradient-to-r from-lh-gold to-yellow-200">
                                 Verticalmente Integrada
                             </span>
                         </h1>
-                        <p className="text-gray-200 text-lg md:text-2xl font-light mb-10 max-w-3xl mx-auto leading-relaxed">
+                        
+                        {/* Párrafo: Roboto */}
+                        <p className="text-gray-200 text-lg md:text-2xl font-light mb-10 max-w-3xl mx-auto leading-relaxed font-sans">
                             Desarrolladora inmobiliaria especializada en construcción residencial y gestión de capital en <span className="text-white font-bold">Florida y South Carolina</span>.
                         </p>
 
                         <div className="flex flex-col md:flex-row gap-4 justify-center items-center">
-                            <Link to="/proyectos" className="px-8 py-4 bg-lh-gold text-black font-bold text-lg rounded hover:bg-white transition-all w-full md:w-auto min-w-[200px]">
+                            <Link to="/proyectos" className="px-8 py-4 bg-lh-gold text-black font-bold text-lg rounded hover:bg-white transition-all w-full md:w-auto min-w-[200px] font-sans uppercase tracking-wide">
                                 Ver Propiedades
                             </Link>
-                            <Link to="/inversionistas" className="px-8 py-4 bg-transparent border border-white text-white font-bold text-lg rounded hover:bg-white hover:text-black transition-all w-full md:w-auto min-w-[200px] flex items-center justify-center gap-2">
+                            <Link to="/inversionistas" className="px-8 py-4 bg-transparent border border-white text-white font-bold text-lg rounded hover:bg-white hover:text-black transition-all w-full md:w-auto min-w-[200px] flex items-center justify-center gap-2 font-sans uppercase tracking-wide">
                                 Invertir Capital <ArrowRight className="w-5 h-5" />
                             </Link>
                         </div>
@@ -84,13 +89,15 @@ const Home = () => {
                 </div>
             </section>
 
-            {/* 2. NUEVA SECCIÓN: QUIÉNES SOMOS (Rescatando info corporativa) */}
+            {/* 2. NUEVA SECCIÓN: QUIÉNES SOMOS */}
             <section className="py-24 bg-white px-6">
                 <div className="max-w-4xl mx-auto text-center">
+                    {/* Título Playfair */}
                     <h2 className="font-heading text-3xl md:text-4xl font-bold text-black mb-6">
                         Más que constructores, somos su socio local en Florida
                     </h2>
-                    <p className="text-gray-600 text-lg leading-relaxed mb-12">
+                    {/* Cuerpo Roboto */}
+                    <p className="text-gray-600 text-lg leading-relaxed mb-12 font-sans">
                         4LH Group nace para cerrar la brecha entre el inversor internacional y el mercado inmobiliario americano.
                         Eliminamos intermediarios innecesarios al controlar <strong>toda la cadena de valor</strong>: compramos la tierra, desarrollamos el proyecto, construimos con equipos propios y comercializamos el activo final.
                     </p>
@@ -98,18 +105,19 @@ const Home = () => {
                     <div className="grid md:grid-cols-3 gap-8">
                         <div className="p-6 bg-gray-50 rounded-xl hover:shadow-lg transition-shadow">
                             <Building className="w-10 h-10 text-lh-gold mx-auto mb-4" />
-                            <h3 className="font-bold text-xl mb-2">Desarrollo</h3>
-                            <p className="text-sm text-gray-500">Identificación de lotes premium y gestión de permisos en tiempo récord.</p>
+                            {/* Subtítulo Playfair */}
+                            <h3 className="font-heading font-bold text-xl mb-2">Desarrollo</h3>
+                            <p className="text-sm text-gray-500 font-sans">Identificación de lotes premium y gestión de permisos en tiempo récord.</p>
                         </div>
                         <div className="p-6 bg-gray-50 rounded-xl hover:shadow-lg transition-shadow">
                             <HardHat className="w-10 h-10 text-lh-gold mx-auto mb-4" />
-                            <h3 className="font-bold text-xl mb-2">Construcción</h3>
-                            <p className="text-sm text-gray-500">Ejecución de obra con estándares de calidad superiores y control de costos.</p>
+                            <h3 className="font-heading font-bold text-xl mb-2">Construcción</h3>
+                            <p className="text-sm text-gray-500 font-sans">Ejecución de obra con estándares de calidad superiores y control de costos.</p>
                         </div>
                         <div className="p-6 bg-gray-50 rounded-xl hover:shadow-lg transition-shadow">
                             <Wallet className="w-10 h-10 text-lh-gold mx-auto mb-4" />
-                            <h3 className="font-bold text-xl mb-2">Capital</h3>
-                            <p className="text-sm text-gray-500">Estructuración de vehículos de inversión para maximizar el retorno del socio.</p>
+                            <h3 className="font-heading font-bold text-xl mb-2">Capital</h3>
+                            <p className="text-sm text-gray-500 font-sans">Estructuración de vehículos de inversión para maximizar el retorno del socio.</p>
                         </div>
                     </div>
                 </div>
@@ -123,21 +131,21 @@ const Home = () => {
                             <Shield className="w-8 h-8" />
                         </div>
                         <h3 className="text-xl font-bold mb-3 font-heading">Seguridad Jurídica</h3>
-                        <p className="text-gray-400">Proteja su patrimonio en una economía dolarizada con títulos de propiedad a su nombre.</p>
+                        <p className="text-gray-400 font-sans">Proteja su patrimonio en una economía dolarizada con títulos de propiedad a su nombre.</p>
                     </div>
                     <div>
                         <div className="w-16 h-16 bg-gray-900 rounded-full flex items-center justify-center mx-auto mb-6 text-lh-gold border border-gray-700">
                             <TrendingUp className="w-8 h-8" />
                         </div>
                         <h3 className="text-xl font-bold mb-3 font-heading">Demanda Creciente</h3>
-                        <p className="text-gray-400">South Florida y Port Charlotte lideran el crecimiento demográfico en EE.UU., garantizando la revalorización.</p>
+                        <p className="text-gray-400 font-sans">South Florida y Port Charlotte lideran el crecimiento demográfico en EE.UU., garantizando la revalorización.</p>
                     </div>
                     <div>
                         <div className="w-16 h-16 bg-gray-900 rounded-full flex items-center justify-center mx-auto mb-6 text-lh-gold border border-gray-700">
                             <Star className="w-8 h-8" />
                         </div>
                         <h3 className="text-xl font-bold mb-3 font-heading">Experiencia Probada</h3>
-                        <p className="text-gray-400">Un equipo multidisciplinario con trayectoria exitosa en Colombia y Estados Unidos.</p>
+                        <p className="text-gray-400 font-sans">Un equipo multidisciplinario con trayectoria exitosa en Colombia y Estados Unidos.</p>
                     </div>
                 </div>
             </section>
@@ -156,31 +164,31 @@ const Home = () => {
                     </div>
 
                     <div className="order-1 lg:order-2">
-                        <span className="text-lh-gold font-bold tracking-widest uppercase text-sm">Modelo Destacado</span>
+                        <span className="text-lh-gold font-bold tracking-widest uppercase text-sm font-sans">Modelo Destacado</span>
                         <h2 className="font-heading text-4xl md:text-5xl font-bold mt-4 mb-6 text-black">Modelo "The Palm"</h2>
-                        <p className="text-gray-600 text-lg mb-8 leading-relaxed">
+                        <p className="text-gray-600 text-lg mb-8 leading-relaxed font-sans">
                             Diseñado para maximizar el valor de reventa. Nuestro modelo insignia combina eficiencia constructiva con acabados de lujo, ideal tanto para familias como para inversores de renta larga.
                         </p>
 
                         <div className="grid grid-cols-2 gap-8 mb-8 border-y border-gray-100 py-6">
                             <div>
-                                <p className="text-3xl font-bold text-black">1,800</p>
-                                <p className="text-gray-400 text-sm uppercase tracking-wider">Sq Ft Totales</p>
+                                <p className="text-3xl font-bold text-black font-heading">1,800</p>
+                                <p className="text-gray-400 text-sm uppercase tracking-wider font-sans">Sq Ft Totales</p>
                             </div>
                             <div>
-                                <p className="text-3xl font-bold text-black">10 Meses</p>
-                                <p className="text-gray-400 text-sm uppercase tracking-wider">Tiempo Ejecución</p>
+                                <p className="text-3xl font-bold text-black font-heading">10 Meses</p>
+                                <p className="text-gray-400 text-sm uppercase tracking-wider font-sans">Tiempo Ejecución</p>
                             </div>
                         </div>
 
-                        <Link to="/proyectos/1" className="bg-black text-white px-8 py-3 rounded hover:bg-lh-gold hover:text-black transition-all inline-flex items-center gap-2 font-bold">
+                        <Link to="/proyectos/1" className="bg-black text-white px-8 py-3 rounded hover:bg-lh-gold hover:text-black transition-all inline-flex items-center gap-2 font-bold font-sans uppercase tracking-wide">
                             Ver Detalles Completos <ArrowRight className="w-4 h-4" />
                         </Link>
                     </div>
                 </div>
             </section>
 
-            {/* 6. SECCIÓN DE TESTIMONIOS (Rescatado de la web anterior) */}
+            {/* 6. SECCIÓN DE TESTIMONIOS */}
             <section className="py-24 bg-gray-50 px-6">
                 <div className="max-w-7xl mx-auto text-center mb-16">
                     <h2 className="font-heading text-3xl md:text-4xl font-bold text-black mb-4">Lo que dicen nuestros socios</h2>
@@ -190,26 +198,25 @@ const Home = () => {
                 <div className="max-w-7xl mx-auto grid md:grid-cols-3 gap-8">
                     {/* Testimonio 1 */}
                     <div className="bg-white p-8 rounded-xl shadow-sm border border-gray-100 italic text-gray-600 relative">
-                        <div className="text-6xl text-lh-gold opacity-30 absolute top-4 left-4 font-serif">"</div>
-                        <p className="mb-6 relative z-10">
+                        <div className="text-6xl text-lh-gold opacity-30 absolute top-4 left-4 font-heading">"</div>
+                        <p className="mb-6 relative z-10 font-sans">
                             "Invertir con 4LH me dio la tranquilidad de tener mi capital respaldado en ladrillos en USA. La transparencia en los reportes de obra es impecable."
                         </p>
                         <div className="flex items-center justify-center gap-3 not-italic">
                             <div className="w-10 h-10 bg-gray-200 rounded-full overflow-hidden">
-                                {/* Usa una foto real o un placeholder */}
                                 <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="Cliente" />
                             </div>
                             <div className="text-left">
-                                <p className="font-bold text-black text-sm">Carlos M.</p>
-                                <p className="text-xs text-gray-400">Inversionista desde 2021</p>
+                                <p className="font-bold text-black text-sm font-sans">Carlos M.</p>
+                                <p className="text-xs text-gray-400 font-sans">Inversionista desde 2021</p>
                             </div>
                         </div>
                     </div>
 
                     {/* Testimonio 2 */}
                     <div className="bg-white p-8 rounded-xl shadow-sm border border-gray-100 italic text-gray-600 relative">
-                        <div className="text-6xl text-lh-gold opacity-30 absolute top-4 left-4 font-serif">"</div>
-                        <p className="mb-6 relative z-10">
+                        <div className="text-6xl text-lh-gold opacity-30 absolute top-4 left-4 font-heading">"</div>
+                        <p className="mb-6 relative z-10 font-sans">
                             "El proceso de construcción de mi casa en North Port fue mucho más rápido de lo esperado. Cumplieron con los tiempos a pesar de los retos del clima."
                         </p>
                         <div className="flex items-center justify-center gap-3 not-italic">
@@ -217,16 +224,16 @@ const Home = () => {
                                 <img src="https://randomuser.me/api/portraits/women/44.jpg" alt="Cliente" />
                             </div>
                             <div className="text-left">
-                                <p className="font-bold text-black text-sm">Sarah Jenkins</p>
-                                <p className="text-xs text-gray-400">Propietaria Modelo Palm</p>
+                                <p className="font-bold text-black text-sm font-sans">Sarah Jenkins</p>
+                                <p className="text-xs text-gray-400 font-sans">Propietaria Modelo Palm</p>
                             </div>
                         </div>
                     </div>
 
                     {/* Testimonio 3 */}
                     <div className="bg-white p-8 rounded-xl shadow-sm border border-gray-100 italic text-gray-600 relative">
-                        <div className="text-6xl text-lh-gold opacity-30 absolute top-4 left-4 font-serif">"</div>
-                        <p className="mb-6 relative z-10">
+                        <div className="text-6xl text-lh-gold opacity-30 absolute top-4 left-4 font-heading">"</div>
+                        <p className="mb-6 relative z-10 font-sans">
                             "Excelente equipo humano. Me guiaron no solo en la construcción, sino en toda la estructura legal para traer mi capital desde Colombia."
                         </p>
                         <div className="flex items-center justify-center gap-3 not-italic">
@@ -234,8 +241,8 @@ const Home = () => {
                                 <img src="https://randomuser.me/api/portraits/men/85.jpg" alt="Cliente" />
                             </div>
                             <div className="text-left">
-                                <p className="font-bold text-black text-sm">Andrés R.</p>
-                                <p className="text-xs text-gray-400">Socio de Capital</p>
+                                <p className="font-bold text-black text-sm font-sans">Andrés R.</p>
+                                <p className="text-xs text-gray-400 font-sans">Socio de Capital</p>
                             </div>
                         </div>
                     </div>
@@ -245,11 +252,11 @@ const Home = () => {
             {/* 5. CTA FINAL */}
             <section className="py-20 bg-lh-gold text-center px-6">
                 <h2 className="font-heading text-3xl md:text-4xl font-bold text-black mb-4">¿Listo para comenzar su proyecto?</h2>
-                <p className="text-black/80 max-w-2xl mx-auto mb-8 text-lg">
+                <p className="text-black/80 max-w-2xl mx-auto mb-8 text-lg font-sans">
                     Ya sea que busque construir su hogar soñado o diversificar su portafolio de inversión.
                 </p>
                 <div className="flex justify-center gap-4">
-                    <Link to="/contacto" className="bg-black text-white px-8 py-3 rounded font-bold hover:bg-white hover:text-black transition-colors shadow-lg">
+                    <Link to="/contacto" className="bg-black text-white px-8 py-3 rounded font-bold hover:bg-white hover:text-black transition-colors shadow-lg font-sans uppercase tracking-wide">
                         Contactar Asesor
                     </Link>
                 </div>

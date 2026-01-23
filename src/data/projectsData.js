@@ -52,7 +52,7 @@ export const projects = [
     specs: "Próximo Desarrollo",
     price: "Próximamente",
     image: "https://images.unsplash.com/photo-1572973802773-6c8411d73a6a?q=80&w=2000&auto=format&fit=crop", 
-    status: "coming_soon" // Podrías usar esto para ponerle un filtro gris
+    status: "coming_soon" 
   }
 ];
 
@@ -63,7 +63,7 @@ export const successStories = [
     title: "Multifamily House Rockford, IL",
     subtitle: "May Street 412",
     specs: "5 Apartamentos | 4 Garajes",
-    image: "https://images.unsplash.com/photo-1568605114967-8130f3a36994?auto=format&fit=crop&q=80", // Foto similar a la de Rockford
+    image: "https://images.unsplash.com/photo-1568605114967-8130f3a36994?auto=format&fit=crop&q=80", 
     location: "Illinois, USA"
   },
   {
@@ -71,7 +71,7 @@ export const successStories = [
     title: "Cartagena, Colombia",
     subtitle: "Morros ÍO Manzanillo",
     specs: "Apartamento 110 MT | 2 Habitaciones | 2 baños",
-    image: "https://images.unsplash.com/photo-1596200216447-97d8ccf99b19?auto=format&fit=crop&q=80", // Foto estilo playa/edificio
+    image: "https://images.unsplash.com/photo-1596200216447-97d8ccf99b19?auto=format&fit=crop&q=80", 
     location: "Cartagena, CO"
   },
   {
@@ -79,7 +79,7 @@ export const successStories = [
     title: "Medellín, Colombia",
     subtitle: "Nativo Madera",
     specs: "Apartamento 135 MT | 3 Habitaciones | 4 baños",
-    image: "/images/proyectos/Captura de pantalla 2024-06-03 a las 14.40.11.webp", // Edificio moderno
+    image: "/images/proyectos/Captura de pantalla 2024-06-03 a las 14.40.11.webp", 
     location: "Medellín, CO"
   },
   {
@@ -87,7 +87,7 @@ export const successStories = [
     title: "Medellín, Colombia",
     subtitle: "Nativo Agua",
     specs: "Apartamento 85 MT | 2 Habitaciones | 2 baños",
-    image: "/images/proyectos/IMG_3651.webp", // Edificio moderno
+    image: "/images/proyectos/IMG_3651.webp", 
     location: "Medellín, CO"
   },
   {

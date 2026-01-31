@@ -18,7 +18,7 @@ const Footer = () => {
                     Maximizamos el valor inmobiliario en South Florida a través de la adquisición estratégica, desarrollo eficiente y comercialización experta.
                 </p>
                 <div className="flex space-x-4">
-                    <a href="#" className="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-lh-gold hover:text-black transition-all">
+                    <a href="https://www.instagram.com/4livinghomes/" className="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-lh-gold hover:text-black transition-all" target='_blank'>
                         <Instagram className="w-5 h-5" />
                     </a>
                     <a href="#" className="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-lh-gold hover:text-black transition-all">

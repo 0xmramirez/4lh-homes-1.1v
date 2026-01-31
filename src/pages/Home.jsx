@@ -53,10 +53,10 @@ const Home = () => {
                         </span>
                         
                         {/* Título Principal: Playfair Display */}
-                        <h1 className="font-heading text-5xl md:text-7xl lg:text-8xl font-bold text-white mb-8 leading-tight">
-                            Inversión Inmobiliaria <br />
-                            <span className="text-transparent bg-clip-text bg-gradient-to-r from-lh-gold to-yellow-200">
-                                Verticalmente Integrada
+                        <h1 className="font-heading text-4xl md:text-6xl lg:text-7xl font-bold text-white mb-8 leading-tight">
+                            Construimos Patrimonio <br />
+                            <span className="text-transparent bg-clip-text bg-gradient-to-r from-lh-gold to-yellow-300">
+                                Generamos Rentabilidad
                             </span>
                         </h1>
                         

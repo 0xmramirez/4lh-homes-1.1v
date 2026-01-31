@@ -14,7 +14,7 @@ export default {
       // --- AQUI AGREGAMOS LAS FUENTES ---
       fontFamily: {
         sans: ['Roboto', 'sans-serif'],        // Texto limpio
-        heading: ['"Playfair Display"', 'serif'], // Títulos elegantes
+        heading: ['Roboto', 'sans-serif'], // Títulos elegantes
       }
     },
   },

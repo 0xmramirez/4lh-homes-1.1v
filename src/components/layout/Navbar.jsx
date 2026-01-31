@@ -5,8 +5,8 @@ const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
 
   // Esta función define cómo se ve el enlace cuando está activo vs inactivo
-  const navLinkClass = ({ isActive }) => 
-    isActive 
+  const navLinkClass = ({ isActive }) =>
+    isActive
       ? "text-black font-bold border-b-2 border-black pb-1 transition-all" // Estilo ACTIVO (tipo Bootstrap active)
       : "text-gray-600 hover:text-black font-medium transition-colors hover:border-b-2 hover:border-gray-200 pb-1"; // Estilo NORMAL
 
@@ -22,22 +22,25 @@ const Navbar = () => {
     <nav className="fixed w-full z-50 bg-white border-b border-gray-100">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between h-20 items-center">
-          
+
           {/* LOGO (Izquierda) */}
           <div className="flex-shrink-0 flex items-center gap-2 cursor-pointer">
-            {/* Aquí puedes poner tu logo .png si lo subes a assets */}
-            <div className="flex flex-col">
-               <span className="font-heading font-bold text-xl tracking-widest text-black">4LIVING</span>
-               <span className="text-[0.6rem] tracking-[0.3em] text-gray-500 text-center">HOMES</span>
-            </div>
-          </div>
+    
+    <img 
+        src="/images/logo/4lh_V2_13.png" 
+        alt="4LH Group Logo" 
+        // CAMBIO AQUÍ: h-16 (más grande) o prueba h-20 si lo quieres enorme
+        className="h-[74px] w-auto object-contain transform scale-125" 
+    />
+
+</div>
 
           {/* MENU ESCRITORIO (Centro/Derecha) */}
           <div className="hidden lg:flex space-x-8">
             {menuItems.map((item) => (
-              <NavLink 
-                key={item.name} 
-                to={item.path} 
+              <NavLink
+                key={item.name}
+                to={item.path}
                 className={navLinkClass}
               >
                 {item.name}
@@ -65,13 +68,13 @@ const Navbar = () => {
         <div className="lg:hidden bg-white border-t">
           <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3 flex flex-col">
             {menuItems.map((item) => (
-              <NavLink 
-                key={item.name} 
+              <NavLink
+                key={item.name}
                 to={item.path}
-                className={({ isActive }) => 
-                  isActive 
-                  ? "block px-3 py-2 text-base font-bold text-black bg-gray-50" 
-                  : "block px-3 py-2 text-base font-medium text-gray-600 hover:text-black hover:bg-gray-50"
+                className={({ isActive }) =>
+                  isActive
+                    ? "block px-3 py-2 text-base font-bold text-black bg-gray-50"
+                    : "block px-3 py-2 text-base font-medium text-gray-600 hover:text-black hover:bg-gray-50"
                 }
                 onClick={() => setIsOpen(false)} // Cierra el menú al hacer click
               >

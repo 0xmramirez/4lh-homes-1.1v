@@ -155,7 +155,7 @@ const About = () => {
       <section className="py-24 max-w-7xl mx-auto px-6">
         <div className="text-center mb-16">
           <h2 className="font-heading text-4xl font-bold text-lh-blue mb-4">Liderazgo</h2>
-          <p className="text-gray-500 max-w-2xl mx-auto">Conozca a los profesionales detrás de su inversión.</p>
+          <p className="text-gray-500 max-w-1xl mx-auto">Somos profesionales con experiencia en inversiones inmobiliarias realizadas en Colombia y Estados Unidos. Más de 2 años en coaching en bienes raíces que nos generó la creación de una red de contactos y equipo para respaldar cualquier decisión en la búsqueda, construcción, remodelación y venta de propiedades.</p>
         </div>
 
         <div className="grid md:grid-cols-3 gap-10">

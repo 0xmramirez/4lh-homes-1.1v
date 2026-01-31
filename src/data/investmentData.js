@@ -25,5 +25,5 @@ export const investmentPools = [
         { label: "Frecuencia Pagos", value: "Final del Plazo" },
       ]
     },
-    // Puedes añadir más aquí...
+
   ];

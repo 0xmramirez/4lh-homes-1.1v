@@ -26,7 +26,7 @@ const timelineStages = [
   {
     id: 3,
     phase: "FASE 03",
-    title: "Construcción Vertical",
+    title: "Construcción",
     description: "Proceso de levantamiento de muros, estructura, techos y cerramientos de la casa.",
     icon: <BrickWall className="w-8 h-8" />,
     position: "bottom"

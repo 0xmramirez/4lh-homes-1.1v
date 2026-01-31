@@ -82,7 +82,7 @@ const About = () => {
 
             {/* TARJETA FLOTANTE "15+ AÑOS" (La mantenemos pero ajustada para no tapar mucho) */}
             <div className="absolute -bottom-6 -right-6 bg-white p-6 rounded-xl shadow-xl border-l-4 border-lh-gold max-w-[200px] hidden md:block z-10">
-              <p className="font-heading text-4xl font-bold text-lh-blue mb-1">15+</p>
+              <p className="font-heading text-4xl font-bold text-lh-blue mb-1">10+</p>
               <p className="text-xs text-gray-500 font-sans tracking-wider uppercase">Años de experiencia combinada</p>
             </div>
 

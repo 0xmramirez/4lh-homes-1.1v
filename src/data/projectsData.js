@@ -3,20 +3,20 @@
 export const projects = [
   {
     id: 1,
-    title: "Duplex Moderno - Dickinson Dr",
-    location: "North Port, FL",
-    price: "$459,900",
-    status: "construction", // valores: 'sale', 'sold', 'construction'
-    specs: { beds: 6, baths: 4, sqft: 2400 }, // Total del duplex
-    image: "https://images.unsplash.com/photo-1613490493576-7fde63acd811?q=80&w=1000&auto=format&fit=crop", // Foto temporal (luego pones la tuya real)
+    title: "Single Family",
+    location: "8048 Sherwood cir, LaBelle, FL",
+    price: "289,000",
+    status: "sale", // valores: 'sale', 'sold', 'construction'
+    specs: { beds: 3, baths: 2, sqft: 1687 }, // Total
+    image: "/images/proyectos/sherwood-area.png", 
     completion: "Enero 2025",
     description: "Modelo de alto rendimiento para renta. Diseño contemporáneo con acabados de lujo."
   },
   {
     id: 2,
-    title: "Residencia Familiar - Tropical Ave",
+    title: "Duplex",
     location: "Port Charlotte, FL",
-    price: "$385,000",
+    price: "385,000",
     status: "sale",
     specs: { beds: 3, baths: 2, sqft: 1850 },
     image: "https://images.unsplash.com/photo-1600596542815-6000214136f5?q=80&w=1000&auto=format&fit=crop",
@@ -38,7 +38,7 @@ export const projects = [
     id: 4,
     title: "Modelo Inversión - Pan American Blvd",
     location: "North Port, FL",
-    price: "$410,000",
+    price: "410,000",
     status: "construction",
     specs: { beds: 3, baths: 2, sqft: 1900 },
     image: "https://images.unsplash.com/photo-1564013799919-ab600027ffc6?q=80&w=1000&auto=format&fit=crop",

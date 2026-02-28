@@ -223,7 +223,7 @@ const Home = () => {
                             </div>
                         </div>
 
-                        <Link to="/proyectos/1" className="bg-black text-white px-8 py-3 rounded hover:bg-lh-gold hover:text-black transition-all inline-flex items-center gap-2 font-bold font-sans uppercase tracking-wide">
+                        <Link to="/proyectos/" className="bg-black text-white px-8 py-3 rounded hover:bg-lh-gold hover:text-black transition-all inline-flex items-center gap-2 font-bold font-sans uppercase tracking-wide">
                             Ver Detalles Completos <ArrowRight className="w-4 h-4" />
                         </Link>
                     </div>

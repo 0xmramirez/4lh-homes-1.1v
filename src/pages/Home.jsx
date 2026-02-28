@@ -4,18 +4,39 @@ import { Link } from 'react-router-dom';
 import { ArrowRight, Star, Shield, TrendingUp, Building, Wallet, HardHat } from 'lucide-react';
 
 // IMÁGENES DEL CARRUSEL
-const heroImages = [
-    "/images/carrusel/imgCarr2.png",
-    "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?q=80&w=2000&auto=format&fit=crop",
-    "https://images.unsplash.com/photo-1592595896551-12b371d546d5?q=80&w=2000&auto=format&fit=crop"
+const heroSlides = [
+    {
+        image: "/images/carrusel/imgCarr2.png",
+        eyebrow: "Bienvenidos a 4LH Group",
+        title: "Construimos Patrimonio",
+        highlight: "Generamos Rentabilidad",
+        description: "Desarrolladora inmobiliaria especializada en construcción residencial y gestión de capital en Florida y Carolina del Sur.",
+        link: "/proyectos"
+    },
+    {
+        image: "/images/carrusel/sherwood_st_1.jpg",
+        eyebrow: "Desarrollo estratégico",
+        title: "Control Total",
+        highlight: "Resultados Reales",
+        description: "Adquirimos, construimos y comercializamos para maximizar el retorno de nuestros socios.",
+        link: "/inversionistas"
+    },
+    {
+        image: "/images/carrusel/SC_render_carrusel.png",
+        eyebrow: "Próximamente",
+        title: "Inversión Inteligente",
+        highlight: "en Carolina del Sur",
+        description: "Proyectos estratégicos en las zonas de mayor crecimiento y plusvalía de los Estados Unidos.",
+        link: "/desarrollo-exclusivo"
+    }
 ];
 
 const Home = () => {
-    const [currentImage, setCurrentImage] = useState(0);
+    const [currentSlide, setCurrentSlide] = useState(0);
 
     useEffect(() => {
         const timer = setInterval(() => {
-            setCurrentImage((prevIndex) => (prevIndex + 1) % heroImages.length);
+            setCurrentSlide((prevIndex) => (prevIndex + 1) % heroSlides.length);
         }, 5000);
         return () => clearInterval(timer);
     }, []);
@@ -23,13 +44,13 @@ const Home = () => {
     return (
         <div className="font-sans text-gray-800"> {/* Roboto por defecto */}
 
-            {/* 1. HERO SECTION (CARRUSEL) */}
+            {/* 1. HERO SECTION (CARRUSEL DINÁMICO) */}
             <section className="relative h-screen flex items-center justify-center overflow-hidden">
                 <div className="absolute inset-0 w-full h-full bg-black">
                     <AnimatePresence mode='wait'>
                         <motion.img
-                            key={currentImage}
-                            src={heroImages[currentImage]}
+                            key={currentSlide}
+                            src={heroSlides[currentSlide].image}
                             alt="Hero Background"
                             initial={{ opacity: 0, scale: 1.1 }}
                             animate={{ opacity: 1, scale: 1 }}
@@ -41,49 +62,70 @@ const Home = () => {
                     <div className="absolute inset-0 bg-black/40"></div>
                 </div>
 
-                <div className="relative z-10 text-center px-6 max-w-5xl mx-auto mt-16">
-                    <motion.div
-                        initial={{ opacity: 0, y: 30 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        transition={{ duration: 0.8 }}
-                    >
-                        {/* Eyebrow: Roboto + Uppercase + Tracking */}
-                        <span className="text-lh-gold font-bold tracking-[0.3em] uppercase text-sm md:text-base mb-6 block font-sans">
-                            Bienvenidos a 4LH Group
-                        </span>
-                        
-                        {/* Título Principal: Playfair Display */}
-                        <h1 className="font-heading text-4xl md:text-6xl lg:text-7xl font-bold text-white mb-8 leading-tight">
-                            Construimos Patrimonio <br />
-                            <span className="text-transparent bg-clip-text bg-gradient-to-r from-lh-gold to-yellow-300">
-                                Generamos Rentabilidad
+                <div className="relative z-10 text-center px-6 max-w-5xl mx-auto mt-16 h-full flex flex-col justify-center">
+                    <AnimatePresence mode='wait'>
+                        <motion.div
+                            key={currentSlide}
+                            initial={{ opacity: 0, y: 30 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            exit={{ opacity: 0, y: -30 }}
+                            transition={{ duration: 0.8 }}
+                        >
+                            {/* Textos Dinámicos */}
+                            <span className="text-lh-gold font-bold tracking-[0.3em] uppercase text-sm md:text-base mb-6 block font-sans">
+                                {heroSlides[currentSlide].eyebrow}
                             </span>
-                        </h1>
-                        
-                        {/* Párrafo: Roboto */}
-                        <p className="text-gray-200 text-lg md:text-2xl font-light mb-10 max-w-3xl mx-auto leading-relaxed font-sans">
-                            Desarrolladora inmobiliaria especializada en construcción residencial y gestión de capital en <span className="text-white font-bold">Florida y South Carolina</span>.
-                        </p>
+                            
+                            <h1 className="font-heading text-4xl md:text-6xl lg:text-7xl font-bold text-white mb-8 leading-tight">
+                                {heroSlides[currentSlide].title} <br />
+                                <span className="text-transparent bg-clip-text bg-gradient-to-r from-lh-gold to-yellow-300">
+                                    {heroSlides[currentSlide].highlight}
+                                </span>
+                            </h1>
+                            
+                            <p className="text-gray-200 text-lg md:text-2xl font-light mb-10 max-w-3xl mx-auto leading-relaxed font-sans">
+                                {heroSlides[currentSlide].description}
+                            </p>
 
-                        <div className="flex flex-col md:flex-row gap-4 justify-center items-center">
-                            <Link to="/proyectos" className="px-8 py-4 bg-lh-gold text-black font-bold text-lg rounded hover:bg-white transition-all w-full md:w-auto min-w-[200px] font-sans uppercase tracking-wide">
-                                Ver Propiedades
-                            </Link>
-                            <Link to="/inversionistas" className="px-8 py-4 bg-transparent border border-white text-white font-bold text-lg rounded hover:bg-white hover:text-black transition-all w-full md:w-auto min-w-[200px] flex items-center justify-center gap-2 font-sans uppercase tracking-wide">
-                                Invertir Capital <ArrowRight className="w-5 h-5" />
-                            </Link>
-                        </div>
-                    </motion.div>
+                            {/* BOTONES DINÁMICOS */}
+                            <div className="flex flex-col md:flex-row gap-4 justify-center items-center mt-10">
+                                {currentSlide === 2 ? (
+                                    /* --- BOTÓN PARA LA SLIDE 3 (Desarrollo Exclusivo) --- */
+                                    <Link 
+                                        to={heroSlides[currentSlide].link} 
+                                        className="px-8 py-4 bg-lh-gold text-black font-bold text-lg rounded hover:bg-white transition-all w-full md:w-auto min-w-[200px] font-sans uppercase tracking-wide flex items-center justify-center shadow-2xl"
+                                    >
+                                        Ver Presentación del Desarrollo <ArrowRight className="w-5 h-5 ml-2" />
+                                    </Link>
+                                ) : (
+                                    /* --- BOTONES PARA LAS SLIDES 1 Y 2 --- */
+                                    <>
+                                        <Link 
+                                            to="/proyectos" 
+                                            className="px-8 py-4 bg-lh-gold text-black font-bold text-lg rounded hover:bg-white transition-all w-full md:w-auto min-w-[200px] font-sans uppercase tracking-wide flex items-center justify-center"
+                                        >
+                                            Ver Propiedades
+                                        </Link>
+                                        <Link 
+                                            to="/inversionistas" 
+                                            className="px-8 py-4 bg-transparent border border-white text-white font-bold text-lg rounded hover:bg-white hover:text-black transition-all w-full md:w-auto min-w-[200px] flex items-center justify-center gap-2 font-sans uppercase tracking-wide"
+                                        >
+                                            Invertir Capital <ArrowRight className="w-5 h-5" />
+                                        </Link>
+                                    </>
+                                )}
+                            </div>
+                        </motion.div>
+                    </AnimatePresence>
                 </div>
 
                 {/* Indicadores */}
-                <div className="absolute bottom-10 left-1/2 transform -translate-x-1/2 flex gap-3 z-20">
-                    {heroImages.map((_, index) => (
+                <div className="absolute bottom-10 left-1/2 transform -translate-x-1/2 flex gap-3 z-30">
+                    {heroSlides.map((_, index) => (
                         <button
                             key={index}
-                            onClick={() => setCurrentImage(index)}
-                            className={`w-3 h-3 rounded-full transition-all duration-300 ${index === currentImage ? 'bg-lh-gold w-8' : 'bg-white/50 hover:bg-white'
-                                }`}
+                            onClick={() => setCurrentSlide(index)}
+                            className={`w-3 h-3 rounded-full transition-all duration-300 ${index === currentSlide ? 'bg-lh-gold w-8' : 'bg-white/50 hover:bg-white'}`}
                         />
                     ))}
                 </div>

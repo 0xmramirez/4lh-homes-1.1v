@@ -8,7 +8,12 @@ export const projects = [
     price: "289,000",
     status: "sale", // valores: 'sale', 'sold', 'construction'
     specs: { beds: 3, baths: 2, sqft: 1687 }, // Total
-    image: "/images/proyectos/sherwood-area.png", 
+    image: "/images/proyectos/sherwood-area.png",
+    gallery: [
+        "/images/proyectos/sherwood-area.png", // Puedes repetir la principal
+        "https://images.unsplash.com/photo-1584622050111-993a426fbf0a?auto=format&fit=crop&q=80", // Ejemplo foto 2
+        "https://images.unsplash.com/photo-1556911220-bff31c812dba?auto=format&fit=crop&q=80"  // Ejemplo foto 3
+    ], 
     completion: "Enero 2025",
     description: "Modelo de alto rendimiento para renta. Diseño contemporáneo con acabados de lujo."
   },

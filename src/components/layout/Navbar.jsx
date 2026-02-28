@@ -27,10 +27,10 @@ const Navbar = () => {
           <div className="flex-shrink-0 flex items-center gap-2 cursor-pointer">
     
     <img 
-        src="/images/logo/4lh_V2_13.png" 
+        src="/images/logo/logo4lhOR.png" 
         alt="4LH Group Logo" 
         // CAMBIO AQUÍ: h-16 (más grande) o prueba h-20 si lo quieres enorme
-        className="h-[74px] w-auto object-contain transform scale-125" 
+        className="h-14 w-auto object-contain" 
     />
 
 </div>

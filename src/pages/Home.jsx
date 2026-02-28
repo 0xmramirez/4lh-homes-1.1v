@@ -6,6 +6,14 @@ import { ArrowRight, Star, Shield, TrendingUp, Building, Wallet, HardHat } from 
 // IMÁGENES DEL CARRUSEL
 const heroSlides = [
     {
+        image: "/images/carrusel/SC_render_carrusel.png",
+        eyebrow: "Próximamente",
+        title: "Inversión Inteligente",
+        highlight: "en Carolina del Sur",
+        description: "Proyectos estratégicos en las zonas de mayor crecimiento y plusvalía de los Estados Unidos.",
+        link: "/desarrollo-exclusivo"
+    },
+    {
         image: "/images/carrusel/imgCarr2.png",
         eyebrow: "Bienvenidos a 4LH Group",
         title: "Construimos Patrimonio",
@@ -20,14 +28,6 @@ const heroSlides = [
         highlight: "Resultados Reales",
         description: "Adquirimos, construimos y comercializamos para maximizar el retorno de nuestros socios.",
         link: "/inversionistas"
-    },
-    {
-        image: "/images/carrusel/SC_render_carrusel.png",
-        eyebrow: "Próximamente",
-        title: "Inversión Inteligente",
-        highlight: "en Carolina del Sur",
-        description: "Proyectos estratégicos en las zonas de mayor crecimiento y plusvalía de los Estados Unidos.",
-        link: "/desarrollo-exclusivo"
     }
 ];
 
@@ -198,7 +198,7 @@ const Home = () => {
                     <div className="relative order-2 lg:order-1">
                         <div className="absolute -top-4 -left-4 w-24 h-24 border-t-4 border-l-4 border-lh-gold"></div>
                         <img
-                            src="https://images.unsplash.com/photo-1613490493576-7fde63acd811?q=80&w=2000&auto=format&fit=crop"
+                            src="/images/proyectos/cortz_blvd_1.png"
                             alt="Casa Modelo"
                             className="rounded shadow-2xl relative z-10 w-full h-[500px] object-cover"
                         />
@@ -207,14 +207,14 @@ const Home = () => {
 
                     <div className="order-1 lg:order-2">
                         <span className="text-lh-gold font-bold tracking-widest uppercase text-sm font-sans">Modelo Destacado</span>
-                        <h2 className="font-heading text-4xl md:text-5xl font-bold mt-4 mb-6 text-black">Modelo "The Palm"</h2>
+                        <h2 className="font-heading text-4xl md:text-5xl font-bold mt-4 mb-6 text-black">Modelo "Cortez Blvd"</h2>
                         <p className="text-gray-600 text-lg mb-8 leading-relaxed font-sans">
-                            Diseñado para maximizar el valor de reventa. Nuestro modelo insignia combina eficiencia constructiva con acabados de lujo, ideal tanto para familias como para inversores de renta larga.
+                            Diseñado para maximizar el valor de reventa. Nuestro modelo insignia combina eficiencia constructiva con excelentes acabados, ideal tanto para familias como para inversores de renta larga.
                         </p>
 
                         <div className="grid grid-cols-2 gap-8 mb-8 border-y border-gray-100 py-6">
                             <div>
-                                <p className="text-3xl font-bold text-black font-heading">1,800</p>
+                                <p className="text-3xl font-bold text-black font-heading">1,270</p>
                                 <p className="text-gray-400 text-sm uppercase tracking-wider font-sans">Sq Ft Totales</p>
                             </div>
                             <div>

@@ -1,22 +1,73 @@
 export default {
-  content: [
+    darkMode: ["class"],
+    content: [
     "./index.html",
     "./src/**/*.{js,ts,jsx,tsx}",
   ],
   theme: {
-    extend: {
-      colors: {
-        'lh-blue': '#000000',  // Redefinimos el color base oscuro a NEGRO PURO
-        'lh-dark': '#1c1c1c',
-        'lh-gold': '#ffd400',  // Nuevo amarillo vibrante
-        'lh-gray': '#f8f9fa',  // Un blanco/gris muy sutil para fondos claros
-      },
-      // --- AQUI AGREGAMOS LAS FUENTES ---
-      fontFamily: {
-        sans: ['Roboto', 'sans-serif'],        // Texto limpio
-        heading: ['Roboto', 'sans-serif'], // Títulos elegantes
-      }
-    },
+  	extend: {
+  		colors: {
+  			'lh-blue': '#000000',
+  			'lh-dark': '#1c1c1c',
+  			'lh-gold': '#ffd400',
+  			'lh-gray': '#f8f9fa',
+  			background: 'hsl(var(--background))',
+  			foreground: 'hsl(var(--foreground))',
+  			card: {
+  				DEFAULT: 'hsl(var(--card))',
+  				foreground: 'hsl(var(--card-foreground))'
+  			},
+  			popover: {
+  				DEFAULT: 'hsl(var(--popover))',
+  				foreground: 'hsl(var(--popover-foreground))'
+  			},
+  			primary: {
+  				DEFAULT: 'hsl(var(--primary))',
+  				foreground: 'hsl(var(--primary-foreground))'
+  			},
+  			secondary: {
+  				DEFAULT: 'hsl(var(--secondary))',
+  				foreground: 'hsl(var(--secondary-foreground))'
+  			},
+  			muted: {
+  				DEFAULT: 'hsl(var(--muted))',
+  				foreground: 'hsl(var(--muted-foreground))'
+  			},
+  			accent: {
+  				DEFAULT: 'hsl(var(--accent))',
+  				foreground: 'hsl(var(--accent-foreground))'
+  			},
+  			destructive: {
+  				DEFAULT: 'hsl(var(--destructive))',
+  				foreground: 'hsl(var(--destructive-foreground))'
+  			},
+  			border: 'hsl(var(--border))',
+  			input: 'hsl(var(--input))',
+  			ring: 'hsl(var(--ring))',
+  			chart: {
+  				'1': 'hsl(var(--chart-1))',
+  				'2': 'hsl(var(--chart-2))',
+  				'3': 'hsl(var(--chart-3))',
+  				'4': 'hsl(var(--chart-4))',
+  				'5': 'hsl(var(--chart-5))'
+  			}
+  		},
+  		fontFamily: {
+  			sans: [
+  				'Roboto',
+  				'sans-serif'
+  			],
+  			heading: [
+  				'Roboto',
+  				'sans-serif'
+  			]
+  		},
+  		borderRadius: {
+  			lg: 'var(--radius)',
+  			md: 'calc(var(--radius) - 2px)',
+  			sm: 'calc(var(--radius) - 4px)'
+  		}
+  	}
   },
-  plugins: [],
+  plugins: [require("tailwindcss-animate")],
 }

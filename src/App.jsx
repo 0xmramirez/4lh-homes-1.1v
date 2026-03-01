@@ -13,6 +13,7 @@ import Contact from './pages/Contact';
 import About from './pages/About';
 import InvestOpportunities from './pages/InvestOpportunities';
 import InvestOpportunityDetail from './pages/InvestmentOppDetail';
+import DesarrolloExclusivo from './pages/DesarrolloExclusivo';
 
 function App() {
   return (
@@ -25,11 +26,14 @@ function App() {
       <main className="flex-grow">
         <Routes>
           <Route path="/" element={<Home />} />
+          
           <Route path="/inversionistas" element={<Investors />} />
           <Route path="/proyectos" element={<Projects />} />
           <Route path="/proyectos/:id" element={<ProjectDetail />} />
           <Route path="/oportunidades-inversion" element={<InvestOpportunities />} />
           <Route path="/oportunidades-inversion/:id" element={<InvestOpportunityDetail />} />
+          <Route path="/desarrollo-exclusivo" element={<DesarrolloExclusivo />} />
+
           <Route path="/nosotros" element={<About />} />
           <Route path="/contacto" element={<Contact />} />
         </Routes>

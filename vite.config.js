@@ -1,5 +1,6 @@
 import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
+import path from "path"
 
 // https://vitejs.dev/config/
 export default defineConfig({
@@ -7,5 +8,10 @@ export default defineConfig({
   server: {
     host: '0.0.0.0',      // Escuchar en todas las direcciones
     allowedHosts: true,   // <--- ¡ESTA ES LA SOLUCIÓN! Permite cualquier host externo
+  },
+  resolve: {
+    alias: {
+      "@": path.resolve(__dirname, "./src"),
+    },
   }
 })

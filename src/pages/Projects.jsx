@@ -2,10 +2,9 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import { Search, MapPin, Ruler, BedDouble, Bath, ArrowRight, Shovel, BrickWall, Megaphone, HandCoins } from 'lucide-react';
-// IMPORTANTE: Asegúrate de importar también successStories aquí 👇
-import { projects, successStories } from '../data/projectsData';
+// 👇 AÑADIMOS clientProjects A LA IMPORTACIÓN 👇
+import { projects, clientProjects, successStories } from '../data/projectsData';
 
-// DATOS DE LAS ETAPAS DEL PROYECTO (Timeline)
 const timelineStages = [
     {
         id: 1,
@@ -154,10 +153,12 @@ const Projects = () => {
             </section>
 
 
-            {/* 3. BUSCADOR/FILTROS */}
+            {/* ==============================================
+                SECCIÓN A: PROYECTOS 4LH
+                ============================================== */}
             <section className="py-10 px-6 bg-gray-50">
                 <div className="max-w-7xl mx-auto flex justify-between items-center border-b border-gray-200 pb-6">
-                    <h2 className="text-2xl font-bold text-lh-blue font-heading">Modelos Disponibles</h2>
+                    <h2 className="text-2xl font-bold text-lh-blue font-heading">Proyectos 4LH</h2>
                     <div className="relative hidden md:block">
                         <input type="text" placeholder="Buscar por zona, precio..." className="pl-10 pr-4 py-2 border border-gray-300 rounded-full focus:outline-none focus:border-lh-gold w-64 bg-white font-sans" />
                         <Search className="absolute left-3 top-2.5 w-5 h-5 text-gray-400" />
@@ -165,10 +166,9 @@ const Projects = () => {
                 </div>
             </section>
 
-            {/* 4. LISTA DE PROYECTOS (GRID) */}
-            <section className="py-12 px-6 mb-20 bg-gray-50">
+            <section className="py-6 px-6 bg-gray-50">
                 <div className="max-w-7xl mx-auto grid md:grid-cols-2 lg:grid-cols-3 gap-10">
-                    {projects.map((project, index) => (
+                    {projects && projects.map((project, index) => (
                         <Link to={`/proyectos/${project.id}`} key={project.id}>
                             <motion.div
                                 initial={{ opacity: 0, y: 30 }}
@@ -186,7 +186,8 @@ const Projects = () => {
                                         {{
                                             'sale': 'En Venta',
                                             'construction': 'En Construcción',
-                                            'sold': 'Vendido'
+                                            'sold': 'Vendido',
+                                            'rented': 'Rentada'
                                         }[project.status] || 'Desconocido'}
                                     </div>
                                     <div className="absolute bottom-0 left-0 w-full bg-gradient-to-t from-black/80 to-transparent p-6">
@@ -215,8 +216,8 @@ const Projects = () => {
 
                                     <div className="flex justify-between items-center">
                                         <div>
-                                            <p className="text-gray-500 text-xs uppercase tracking-wider mb-1 font-sans">Precio desde</p>
-                                            <p className="text-3xl font-heading font-bold text-lh-blue">${project.price.toLocaleString()}</p>
+                                            <p className="text-gray-500 text-xs uppercase tracking-wider mb-1 font-sans">Precio</p>
+                                            <p className="text-3xl font-heading font-bold text-lh-blue">${project.price}</p>
                                         </div>
                                         <div className="w-12 h-12 bg-lh-gold rounded-full flex items-center justify-center group-hover:bg-black group-hover:text-white transition-colors">
                                             <ArrowRight className="w-6 h-6" />
@@ -229,7 +230,81 @@ const Projects = () => {
                 </div>
             </section>
 
-            {/* 5. SECCIÓN: CASOS DE ÉXITO (LA QUE FALTABA) */}
+
+            {/* ==============================================
+                SECCIÓN B: PROYECTOS DE CLIENTES (NUEVA)
+                ============================================== */}
+            <section className="py-10 px-6 bg-gray-50 mt-10">
+                <div className="max-w-7xl mx-auto flex justify-between items-center border-b border-gray-200 pb-6">
+                    <div>
+                        <h2 className="text-2xl font-bold text-lh-blue font-heading">Proyectos de Clientes</h2>
+                        <p className="text-gray-500 text-sm mt-1">Casas personalizadas construidas a medida.</p>
+                    </div>
+                </div>
+            </section>
+
+            <section className="py-6 px-6 bg-gray-50 mb-20">
+                <div className="max-w-7xl mx-auto grid md:grid-cols-2 lg:grid-cols-3 gap-10">
+                    {/* 👇 Mapeamos el nuevo arreglo clientProjects 👇 */}
+                    {clientProjects && clientProjects.map((project, index) => (
+                        <Link to={`/proyectos/${project.id}`} key={project.id}>
+                            <motion.div
+                                initial={{ opacity: 0, y: 30 }}
+                                animate={{ opacity: 1, y: 0 }}
+                                transition={{ delay: index * 0.1 }}
+                                className="bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-shadow group border border-gray-100 h-full flex flex-col"
+                            >
+                                <div className="relative h-64 overflow-hidden">
+                                    <img
+                                        src={project.image}
+                                        alt={project.title}
+                                        className="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-700"
+                                        
+                                    />
+                                    <div className="absolute top-4 left-4 bg-black text-white text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider font-sans">
+                                        Entregado
+                                    </div>
+                                    <div className="absolute bottom-0 left-0 w-full bg-gradient-to-t from-black/80 to-transparent p-6">
+                                        <h3 className="text-2xl font-bold text-white mb-1 font-heading">{project.title}</h3>
+                                        <div className="flex items-center text-gray-300 text-sm font-sans">
+                                            <MapPin className="w-4 h-4 mr-1 text-lh-gold" /> {project.location}
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div className="p-6 flex-grow flex flex-col justify-between">
+                                    <div className="flex justify-between items-center mb-6 bg-gray-50 p-4 rounded-lg">
+                                        <div className="flex items-center gap-2">
+                                            <Ruler className="w-5 h-5 text-gray-400" />
+                                            <span className="font-bold text-lh-blue font-sans">{project.specs.sqft} <span className="text-xs font-normal text-gray-500">Sq Ft</span></span>
+                                        </div>
+                                        <div className="flex items-center gap-2">
+                                            <BedDouble className="w-5 h-5 text-gray-400" />
+                                            <span className="font-bold text-lh-blue font-sans">{project.specs.beds} <span className="text-xs font-normal text-gray-500">Hab</span></span>
+                                        </div>
+                                        <div className="flex items-center gap-2">
+                                            <Bath className="w-5 h-5 text-gray-400" />
+                                            <span className="font-bold text-lh-blue font-sans">{project.specs.baths} <span className="text-xs font-normal text-gray-500">Baños</span></span>
+                                        </div>
+                                    </div>
+
+                                    <div className="flex justify-between items-center">
+                                        <div>
+                                            <p className="text-gray-500 text-xs uppercase tracking-wider mb-1 font-sans">Inversión</p>
+                                            <p className="text-3xl font-heading font-bold text-lh-blue">${project.price}</p>
+                                        </div>
+                                        <div className="w-12 h-12 bg-lh-gold rounded-full flex items-center justify-center group-hover:bg-black group-hover:text-white transition-colors">
+                                            <ArrowRight className="w-6 h-6" />
+                                        </div>
+                                    </div>
+                                </div>
+                            </motion.div>
+                        </Link>
+                    ))}
+                </div>
+            </section>
+
+            {/* 5. SECCIÓN: CASOS DE ÉXITO */}
             <section className="bg-black py-20 text-white">
                 <div className="max-w-7xl mx-auto px-6">
 

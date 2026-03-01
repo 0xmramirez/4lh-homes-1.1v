@@ -89,7 +89,7 @@ const Home = () => {
 
                             {/* BOTONES DINÁMICOS */}
                             <div className="flex flex-col md:flex-row gap-4 justify-center items-center mt-10">
-                                {currentSlide === 2 ? (
+                                {currentSlide === 0 ? (
                                     /* --- BOTÓN PARA LA SLIDE 3 (Desarrollo Exclusivo) --- */
                                     <Link 
                                         to={heroSlides[currentSlide].link} 

@@ -1,12 +1,15 @@
 // src/data/projectsData.js
 
+import { each } from "chart.js/helpers";
+
+// PROYECTOS 4LH
 export const projects = [
   {
     id: 1,
     title: "Single Family",
     location: "8048 Sherwood cir, LaBelle, FL",
     price: "284,000",
-    status: "sale", // valores: 'sale', 'sold', 'construction'
+    status: "sale", // valores: 'sale', 'sold', 'construction', rented
     specs: { beds: 3, baths: 2, sqft: 1292 }, // Total
     image: "/images/proyectos/sherwood/sherwood-area.png",
     gallery: [
@@ -18,50 +21,66 @@ export const projects = [
         "/images/proyectos/sherwood/cocina_staging03.png",  // Ejemplo foto 3
     ], 
     completion: "Enero 2025",
-    description: "Modelo de alto rendimiento para renta. Diseño contemporáneo con acabados excelentes."
+    description: "Esta residencia unifamiliar totalmente nueva y cuidadosamente diseñada, situada en el corazón de Labelle, ofrece una vida moderna con un toque de encanto sureño. Con 3 amplios dormitorios, 2 baños y 157 m² de superficie construida, esta casa es perfecta para familias y para recibir invitados. Disfrute de la distribución diáfana, con una cocina gourmet con encimeras de cuarzo, elegantes electrodomésticos de acero inoxidable y una isla peninsular. La suite principal incluye un vestidor y un baño en suite con dos lavabos y una lujosa ducha a ras de suelo. Otros aspectos destacados son las ventanas de bajo consumo energético, un amplio garaje para un coche y un patio trasero privado listo para que le dé su toque personal. Situada cerca de colegios, restaurantes y zonas de ocio al aire libre, esta propiedad ofrece comodidad y un estilo de vida tranquilo."
   },
   {
     id: 2,
-    title: "Duplex",
-    location: "Port Charlotte, FL",
-    price: "385,000",
-    status: "sale",
-    specs: { beds: 3, baths: 2, sqft: 1850 },
-    image: "https://images.unsplash.com/photo-1600596542815-6000214136f5?q=80&w=1000&auto=format&fit=crop",
+    title: "Duplex Dickinson Dr",
+    location: "6940 Dickinson Dr, Sebring, FL",
+    price: "1,675 c/u",
+    status: "rented",
+    specs: { beds: 3, baths: 2, sqft: 1240 },
+    image: "/images/proyectos/dickinson1.png",
     completion: "Lista para entrega",
-    description: "Ubicación estratégica cerca de escuelas. Ideal para familias o renta a largo plazo."
+    description: "¡Vive donde otros vacacionan! Tu refugio de lujo en el corazón de Sun 'n Lake ¿Buscas el equilibrio perfecto entre serenidad, deporte y conveniencia? Bienvenido a 6940 Dickinson Dr, una ubicación privilegiada en la exclusiva comunidad de Sun 'n Lake en Sebring. Imagina despertar a solo pasos de campos de golf de 18 hoyos de clase mundial, donde cada tarde es una oportunidad para mejorar tu hándicap. Al vivir aquí, no solo compras una propiedad, adquieres un estilo de vida: Clubhouse Exclusivo: Disfruta de cenas gourmet en el restaurante del club o relájate en la espectacular piscina estilo resort tras una jornada activa. Salud de Primer Nivel: La tranquilidad mental es total al estar a minutos de uno de los hospitales más completos y avanzados de Florida, ideal para profesionales del sector salud o familias que priorizan el bienestar. Entorno Natural: Calles tranquilas, paisajes verdes y la seguridad de una comunidad consolidada. ¡No dejes pasar la oportunidad de construir o vivir en el epicentro del confort en Sebring!"
   },
   {
     id: 3,
-    title: "Villa Premium - Biscayne Dr",
-    location: "North Port, FL",
-    price: "VENDIDO",
-    status: "sold",
-    specs: { beds: 4, baths: 3, sqft: 2100 },
-    image: "https://images.unsplash.com/photo-1600607687644-c7171b42498b?q=80&w=1000&auto=format&fit=crop",
-    completion: "Entregado 2023",
-    description: "Proyecto exitoso con ROI del 18% para nuestros inversores."
+    title: "Single Family",
+    location: "5523 Cortez Blvd, Sebring, FL",
+    price: "2,100 c/u",
+    status: "rented",
+    specs: { beds: 3, baths: 2, sqft: 1270 },
+    image: "/images/proyectos/cortz_blvd_1.png",
+    completion: "Entregado 202",
+    description: "Esta hermosa casa de 3/2 está ubicada en la comunidad Sun N Lake. Amplia planta abierta que permite la entrada de mucha luz natural en las zonas de estar. Concepto abierto con gran salón con iluminación LED empotrada. La hermosa cocina cuenta con una isla, encimeras de cuarzo, electrodomésticos de acero inoxidable y armarios de madera blanca. Los baños también cuentan con encimeras de cuarzo y el baño principal tiene lavabos dobles. Se instaló suelo de vinilo en toda la casa. Bonito patio trasero con mucho espacio para una piscina, y la casa también cuenta con un sistema de riego. Esta propiedad goza de proximidad a una gran variedad de servicios, como centros comerciales, restaurantes, centros médicos, colegios y mucho más."
   },
   {
-    id: 4,
-    title: "Modelo Inversión - Pan American Blvd",
-    location: "North Port, FL",
-    price: "410,000",
-    status: "construction",
-    specs: { beds: 3, baths: 2, sqft: 1900 },
-    image: "https://images.unsplash.com/photo-1564013799919-ab600027ffc6?q=80&w=1000&auto=format&fit=crop",
-    completion: "Marzo 2025",
-    description: "En fase de acabados. Oportunidad de preventa disponible."
-  },
-  {
-    id: 99, 
+    id: 4, 
     title: "Expansión South Carolina",
-    location: "Greenville / Columbia, SC", 
-    specs: "Próximo Desarrollo",
+    location: "105 Mount Bay Dr, Westminster, SC",
+    specs: { beds: 3, baths: 2, sqft: 1552 }, 
     price: "Próximamente",
-    image: "https://images.unsplash.com/photo-1572973802773-6c8411d73a6a?q=80&w=2000&auto=format&fit=crop", 
-    status: "coming_soon" 
+    image: "/images/carrusel/SC_render_carrusel.png", 
+    status: "construction",
   }
+];
+
+// PROYECTOS CLIENTES 4LH
+export const clientProjects = [
+    {
+    id: 101,
+    title: "Single Family",
+    location: "3830 El Rado Av, Sebring, FL",
+    price: "2,100 c/u",
+    status: "rented",
+    specs: { beds: 3, baths: 2, sqft: 1270 },
+    image: "/images/proyectos/elrado1.jpg",
+    completion: "Entregado 202",
+    description: "Esta hermosa casa de 3/2 está ubicada en la comunidad Sun N Lake. Amplia planta abierta que permite la entrada de mucha luz natural en las zonas de estar. Concepto abierto con gran salón con iluminación LED empotrada. La hermosa cocina cuenta con una isla, encimeras de cuarzo, electrodomésticos de acero inoxidable y armarios de madera blanca. Los baños también cuentan con encimeras de cuarzo y el baño principal tiene lavabos dobles. Se instaló suelo de vinilo en toda la casa. Bonito patio trasero con mucho espacio para una piscina, y la casa también cuenta con un sistema de riego. Esta propiedad goza de proximidad a una gran variedad de servicios, como centros comerciales, restaurantes, centros médicos, colegios y mucho más."
+  },
+  {
+    id: 102,
+    title: "Duplex 6941",
+    location: "6941 Dickinson Dr, Sebring, FL",
+    price: "1,675 c/u",
+    status: "rented",
+    specs: { beds: 3, baths: 2, sqft: 1240 },
+    image: "/images/proyectos/dickinson1.png",
+    completion: "Lista para entrega",
+    description: "¡Vive donde otros vacacionan! Tu refugio de lujo en el corazón de Sun 'n Lake ¿Buscas el equilibrio perfecto entre serenidad, deporte y conveniencia? Bienvenido a 6940 Dickinson Dr, una ubicación privilegiada en la exclusiva comunidad de Sun 'n Lake en Sebring. Imagina despertar a solo pasos de campos de golf de 18 hoyos de clase mundial, donde cada tarde es una oportunidad para mejorar tu hándicap. Al vivir aquí, no solo compras una propiedad, adquieres un estilo de vida: Clubhouse Exclusivo: Disfruta de cenas gourmet en el restaurante del club o relájate en la espectacular piscina estilo resort tras una jornada activa. Salud de Primer Nivel: La tranquilidad mental es total al estar a minutos de uno de los hospitales más completos y avanzados de Florida, ideal para profesionales del sector salud o familias que priorizan el bienestar. Entorno Natural: Calles tranquilas, paisajes verdes y la seguridad de una comunidad consolidada. ¡No dejes pasar la oportunidad de construir o vivir en el epicentro del confort en Sebring!"
+  },
+    
 ];
 
 // CASOS DE ÉXITO 

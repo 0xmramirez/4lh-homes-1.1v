@@ -155,7 +155,7 @@ const ProjectDetail = () => {
             ========================================= */}
         <div className="lg:col-span-1">
             <div className="bg-white p-8 rounded-2xl shadow-2xl border border-gray-100 sticky top-28">
-                <p className="text-gray-400 text-sm uppercase tracking-widest mb-2 font-bold">Precio Estimado</p>
+                <p className="text-gray-400 text-sm uppercase tracking-widest mb-2 font-bold">Precio</p>
                 <div className="text-5xl font-heading font-bold text-lh-blue mb-8">${project.price}</div>
                 
                 <div className="space-y-4">
